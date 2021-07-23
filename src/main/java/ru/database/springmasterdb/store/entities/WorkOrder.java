@@ -12,8 +12,11 @@ import java.time.Instant;
 @AllArgsConstructor
 @Table(name = "work_order")
 public class WorkOrder {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator( name = "jpaSequence", sequenceName = "JPA_SEQUENCE", allocationSize = 1, initialValue = 1 )
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "jpaSequence")
+    @Column(updatable = false, nullable = false)
     private Long id;
 
     @Builder.Default
