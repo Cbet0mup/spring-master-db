@@ -25,6 +25,8 @@ dependencies {
     implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
     implementation group: 'com.sun.xml.bind', name: 'jaxb-core', version: '3.0.0'
     implementation group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '3.0.0'
+// https://mvnrepository.com/artifact/org.hibernate/hibernate-validator
+    implementation group: 'org.hibernate', name: 'hibernate-validator', version: '7.0.1.Final'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'

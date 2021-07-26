@@ -1,37 +1,53 @@
 package ru.database.springmasterdb.store.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.time.Instant;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
-@Builder
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "work_order")
-public class WorkOrder {
+@EqualsAndHashCode(of = {"id"})
+@DynamicInsert
+@DynamicUpdate
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class WorkOrder implements Serializable {
 
     @Id
-    @SequenceGenerator( name = "jpaSequence", sequenceName = "JPA_SEQUENCE", allocationSize = 1, initialValue = 1 )
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "jpaSequence")
+    @SequenceGenerator(name = "jpaSequence", sequenceName = "JPA_SEQUENCE", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jpaSequence")
     @Column(updatable = false, nullable = false)
     private Long id;
 
-    @Builder.Default
-    @NonNull
-    private Instant createdAt = Instant.now();  //дата приёмки
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime createdAt;  //дата приёмки
 
-    @NonNull
+    @NotEmpty(message = "Имя не должно быть пустым.")
+    @Size(min = 2, max = 30, message = "Имя должно быть в диапазоне от 2 до 30 символов.")
     private String customerName;
+
+    @NotEmpty(message = "Требуется ввести номер телефона.")
+    @Size(min = 6, max = 16, message = "Неправильный размер номера.")
     private String customerPhone;
+
     private String serialNumber;
-    private Instant dateOfIssue; //дата выдачи
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime dateOfIssue; //дата выдачи
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "service_id")
-    private Service service;
+    private ServiceOrder service;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")

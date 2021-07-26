@@ -8,10 +8,11 @@ import ru.database.springmasterdb.services.WorkOrderServiceInterface;
 import ru.database.springmasterdb.store.entities.WorkOrder;
 import ru.database.springmasterdb.store.repositories.WorkOrderRepo;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Service
 public class WorkOrderService implements WorkOrderServiceInterface {
+
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -25,10 +26,11 @@ public class WorkOrderService implements WorkOrderServiceInterface {
     @Override
     public void createWorkOrder(WorkOrder workOrder) {
 
-    workOrder.setCreatedAt(Instant.now());
-    workOrderRepo.save(workOrder);
+        workOrder.setCreatedAt(LocalDateTime.now());
 
-    log.info("заказ-наряд создан", Instant.now());
+        workOrderRepo.save(workOrder);
+
+        log.info("заказ-наряд создан");
     }
 
     @Override
