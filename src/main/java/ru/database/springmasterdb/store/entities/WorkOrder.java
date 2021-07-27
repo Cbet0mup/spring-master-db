@@ -3,6 +3,7 @@ package ru.database.springmasterdb.store.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
 @DynamicInsert
 @DynamicUpdate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Accessors(chain = true)
 public class WorkOrder implements Serializable {
 
     @Id
