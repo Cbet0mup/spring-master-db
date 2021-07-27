@@ -40,7 +40,7 @@ public class WorkOrderService implements WorkOrderServiceInterface {
     }
 
     @Override
-    public void createWorkOrder(WorkOrderDTO workOrderDTO) throws EngineerNotFoundException {
+    public void createWorkOrder(WorkOrderDTO workOrderDTO) {
         try {
             Engineer engineer = engineerRepo
                     .findById(workOrderDTO.getEngineerId())
@@ -64,7 +64,7 @@ public class WorkOrderService implements WorkOrderServiceInterface {
                     .findById(workOrderDTO.getStatusId())
                     .orElseThrow(() -> new StatusNotFoundException("this status not found"));
 
-                                     //Собираем наш заказ/наряд из всего полученного выше
+            //Собираем наш заказ/наряд из всего полученного выше
             WorkOrder workOrder = new WorkOrder();
             workOrder.setCreatedAt(LocalDateTime.now())
                     .setCustomerName(workOrderDTO.getCustomerName())
@@ -78,12 +78,11 @@ public class WorkOrderService implements WorkOrderServiceInterface {
                     .setStatus(status);
 
             workOrderRepo.save(workOrder);
-            log.info("заказ-наряд создан");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
+        log.info("заказ-наряд создан");
     }
 
     @Override

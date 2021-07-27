@@ -25,8 +25,8 @@ public class WorkOrderController {
     }
 
     @PostMapping
-    public String createWorkOrder(@RequestBody WorkOrderDTO workOrderDTO) throws EngineerNotFoundException {
-        System.out.println(workOrderDTO.toString());
+    public String createWorkOrder(@RequestBody WorkOrderDTO workOrderDTO) {
+        log.info("Принята сущность: " + workOrderDTO.toString());
         workOrderService.createWorkOrder(workOrderDTO);
         return "workOrderDTO   created";
     }
