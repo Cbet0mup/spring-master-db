@@ -2,7 +2,6 @@ package ru.database.springmasterdb.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.database.springmasterdb.services.TestService;
 import ru.database.springmasterdb.store.entities.TestEntity;
 
 @RestController

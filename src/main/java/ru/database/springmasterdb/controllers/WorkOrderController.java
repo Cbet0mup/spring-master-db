@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.database.springmasterdb.dao.WorkOrderDTO;
+import ru.database.springmasterdb.exceptions.EngineerNotFoundException;
 import ru.database.springmasterdb.services.impl.WorkOrderService;
 import ru.database.springmasterdb.store.entities.WorkOrder;
 
@@ -20,7 +21,6 @@ public class WorkOrderController {
 
 
     private final WorkOrderService workOrderService;
-    private final ObjectMapper mapper = new ObjectMapper();
 
 
     @Autowired
@@ -30,21 +30,8 @@ public class WorkOrderController {
     }
 
     @PostMapping
-    public WorkOrderDTO createWorkOrder(@PathVariable Long engineerId,
-                                  Long manufacturerId,
-                                  Long productId,
-                                  Long receiverId,
-                                  Long serviceId,
-                                  Long statusId,
-                                  @Valid @RequestBody WorkOrderDTO workOrderDTO) {
-        try {
-
-            log.info("workorder save controller");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return workOrderDTO;
-        }
-
-        return workOrderDTO;
+    public String createWorkOrder(@Valid @RequestBody WorkOrderDTO workOrderDTO) throws EngineerNotFoundException {
+        workOrderService.createWorkOrder(workOrderDTO);
+        return "workOrderDTO   created";
     }
 }
