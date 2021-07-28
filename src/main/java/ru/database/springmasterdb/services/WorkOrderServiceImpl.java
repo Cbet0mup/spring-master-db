@@ -1,19 +1,18 @@
-package ru.database.springmasterdb.services.impl;
+package ru.database.springmasterdb.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.database.springmasterdb.dao.WorkOrderDTO;
+import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.exceptions.*;
-import ru.database.springmasterdb.services.WorkOrderServiceInterface;
 import ru.database.springmasterdb.store.entities.*;
 import ru.database.springmasterdb.store.repositories.*;
 
 import java.time.LocalDateTime;
 
 @Service
-public class WorkOrderService implements WorkOrderServiceInterface {
+public class WorkOrderServiceImpl implements WorkOrderService {
 
 
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -27,9 +26,9 @@ public class WorkOrderService implements WorkOrderServiceInterface {
     private final StatusRepo statusRepo;
 
     @Autowired
-    public WorkOrderService(WorkOrderRepo workOrderRepo, EngineerRepo engineerRepo, ManufacturerRepo manufacturerRepo,
-                            ProductRepo productRepo, ReceiverRepo receiverRepo, ServiceOrderRepo serviceOrderRepo,
-                            StatusRepo statusRepo) {
+    public WorkOrderServiceImpl(WorkOrderRepo workOrderRepo, EngineerRepo engineerRepo, ManufacturerRepo manufacturerRepo,
+                                ProductRepo productRepo, ReceiverRepo receiverRepo, ServiceOrderRepo serviceOrderRepo,
+                                StatusRepo statusRepo) {
         this.workOrderRepo = workOrderRepo;
         this.engineerRepo = engineerRepo;
         this.manufacturerRepo = manufacturerRepo;

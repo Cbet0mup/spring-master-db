@@ -1,4 +1,4 @@
-package ru.database.springmasterdb.dao;
+package ru.database.springmasterdb.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
