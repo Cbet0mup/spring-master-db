@@ -1,4 +1,4 @@
-package ru.database.springmasterdb.store.entities;
+package ru.database.springmasterdb.store;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

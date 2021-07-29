@@ -1,10 +1,9 @@
-package ru.database.springmasterdb.store.entities;
+package ru.database.springmasterdb.store;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,14 +13,14 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class ServiceOrder implements Serializable {
+public class Status implements Serializable {                   //в ремонте, готов, дозвон, принят
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private String serviceType;
+    private String statusName;
 
-    @OneToOne(mappedBy = "service", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "status", cascade = CascadeType.ALL)
     private WorkOrder workOrder;
 }

@@ -1,7 +1,7 @@
-package ru.database.springmasterdb.store.repositories;
+package ru.database.springmasterdb.store;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.database.springmasterdb.store.entities.Receiver;
+import ru.database.springmasterdb.store.Receiver;
 
 public interface ReceiverRepo extends JpaRepository<Receiver, Long> {
 }

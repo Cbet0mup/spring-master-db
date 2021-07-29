@@ -4,10 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.exceptions.*;
-import ru.database.springmasterdb.store.entities.*;
-import ru.database.springmasterdb.store.repositories.*;
+import ru.database.springmasterdb.store.*;
 
 import java.time.LocalDateTime;
 
@@ -39,6 +39,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     }
 
     @Override
+    @Transactional                                          //для чтения (readOnly = true)
     public void createWorkOrder(WorkOrderDTO workOrderDTO) {
         try {
             Engineer engineer = engineerRepo
@@ -77,11 +78,11 @@ public class WorkOrderServiceImpl implements WorkOrderService {
                     .setStatus(status);
 
             workOrderRepo.save(workOrder);
-
+            log.info("заказ-наряд создан");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        log.info("заказ-наряд создан");
+
     }
 
     @Override

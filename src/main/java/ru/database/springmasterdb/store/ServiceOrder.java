@@ -1,26 +1,26 @@
-package ru.database.springmasterdb.store.entities;
+package ru.database.springmasterdb.store;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
-
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Manufacturer implements Serializable {                 //производитель
+public class ServiceOrder implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private String manufacturerName;
+    private String serviceType;
 
-    @OneToOne(mappedBy = "manufacturer", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "service", cascade = CascadeType.ALL)
     private WorkOrder workOrder;
-
 }
