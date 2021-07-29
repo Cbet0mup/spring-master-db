@@ -43,26 +43,31 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     public void createWorkOrder(WorkOrderDTO workOrderDTO) {
         try {
             Engineer engineer = engineerRepo
-                    .findById(workOrderDTO.getEngineerId())
-                    .orElseThrow(() -> new EngineerNotFoundException("this Engineer not found"));
+                    .getById(workOrderDTO.getEngineerId());//.findById(workOrderDTO.getEngineerId())
+                    //.orElseThrow(() -> new EngineerNotFoundException("this Engineer not found"));
 
             Manufacturer manufacturer = manufacturerRepo
-                    .findById(workOrderDTO.getManufacturerId())
-                    .orElseThrow(() -> new ManufacturerNotFoundException("this manufacturer not found"));
+                    .getById(workOrderDTO.getManufacturerId());
+//                    .findById(workOrderDTO.getManufacturerId())
+//                    .orElseThrow(() -> new ManufacturerNotFoundException("this manufacturer not found"));
 
             Product product = productRepo
-                    .findById(workOrderDTO.getProductId())
-                    .orElseThrow(() -> new ProductNotFoundException("this product not found"));
+                    .getById(workOrderDTO.getProductId());
+//                    .findById(workOrderDTO.getProductId())
+//                    .orElseThrow(() -> new ProductNotFoundException("this product not found"));
 
             Receiver receiver = receiverRepo
-                    .findById(workOrderDTO.getReceiverId())
-                    .orElseThrow(() -> new ReceiverNotFoundException("this receiver not found"));
+                    .getById(workOrderDTO.getReceiverId());
+//                    .findById(workOrderDTO.getReceiverId())
+//                    .orElseThrow(() -> new ReceiverNotFoundException("this receiver not found"));
             ServiceOrder serviceOrder = serviceOrderRepo
-                    .findById(workOrderDTO.getServiceId())
-                    .orElseThrow(() -> new ServiceOrderNotFoundException("this serviceOrder not found"));
+                    .getById(workOrderDTO.getServiceId());
+//                    .findById(workOrderDTO.getServiceId())
+//                    .orElseThrow(() -> new ServiceOrderNotFoundException("this serviceOrder not found"));
             Status status = statusRepo
-                    .findById(workOrderDTO.getStatusId())
-                    .orElseThrow(() -> new StatusNotFoundException("this status not found"));
+                    .getById(workOrderDTO.getStatusId());
+//                    .findById(workOrderDTO.getStatusId())
+//                    .orElseThrow(() -> new StatusNotFoundException("this status not found"));
 
             //Собираем наш заказ/наряд из всего полученного выше
             WorkOrder workOrder = new WorkOrder();
@@ -77,8 +82,8 @@ public class WorkOrderServiceImpl implements WorkOrderService {
                     .setService(serviceOrder)
                     .setStatus(status);
 
-            workOrderRepo.save(workOrder);
-            log.info("заказ-наряд создан");
+            workOrderRepo.saveAndFlush(workOrder);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
