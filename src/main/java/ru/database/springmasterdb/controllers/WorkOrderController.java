@@ -3,12 +3,17 @@ package ru.database.springmasterdb.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
+import ru.database.springmasterdb.dto.WorkOrderDTOpresent;
 import ru.database.springmasterdb.services.WorkOrderServiceImpl;
 
 @RestController
-@RequestMapping("/workorder")
+@RequestMapping(path = "/workorder", produces = MediaType.APPLICATION_JSON_VALUE)
 public class WorkOrderController {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -24,9 +29,15 @@ public class WorkOrderController {
     }
 
     @PostMapping
-    public String createWorkOrder(@RequestBody WorkOrderDTO workOrderDTO) {
-        log.info("Принята сущность: " + workOrderDTO.toString());
+    public ResponseEntity<WorkOrderDTO> createWorkOrder(@RequestBody WorkOrderDTO workOrderDTO) {
         workOrderServiceImpl.createWorkOrder(workOrderDTO);
-        return "workOrderDTO   created";
+        log.info("Создана сущность з/н: \n" + workOrderDTO.toString());
+        return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/findworkorderbyid/{id}")
+    public ResponseEntity<WorkOrderDTOpresent> getWorkorderById(@PathVariable("id") Integer id, Model model){
+       WorkOrderDTOpresent workOrderDTOpr = workOrderServiceImpl.getByNum(id);
+        return new ResponseEntity<>(workOrderDTOpr, HttpStatus.FOUND);
     }
 }

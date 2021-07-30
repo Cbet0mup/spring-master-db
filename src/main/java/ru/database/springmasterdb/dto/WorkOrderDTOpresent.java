@@ -14,18 +14,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @Accessors(chain = true)
-public class WorkOrderDTO {
-
+public class WorkOrderDTOpresent {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime createdAt;  //дата приёмки
     private String customerName;
     private String customerPhone;
     private String serialNumber;
-    private Long serviceId;
-    private Long productId;
-    private Long manufacturerId;
-    private Long receiverId;
-    private Long engineerId;
-    private Long statusId;
-
+    private String serviceName;
+    private String productName;
+    private String manufacturerName;
+    private String receiverName;
+    private String engineerName;
+    private String statusName;
 }

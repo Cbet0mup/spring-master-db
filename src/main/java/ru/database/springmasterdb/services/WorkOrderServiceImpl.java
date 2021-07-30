@@ -1,12 +1,10 @@
 package ru.database.springmasterdb.services;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
-import ru.database.springmasterdb.exceptions.*;
+import ru.database.springmasterdb.dto.WorkOrderDTOpresent;
 import ru.database.springmasterdb.store.*;
 
 import java.time.LocalDateTime;
@@ -15,7 +13,7 @@ import java.time.LocalDateTime;
 public class WorkOrderServiceImpl implements WorkOrderService {
 
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    // private final Logger log = LoggerFactory.getLogger(getClass());
 
     private final WorkOrderRepo workOrderRepo;
     private final EngineerRepo engineerRepo;
@@ -43,31 +41,22 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     public void createWorkOrder(WorkOrderDTO workOrderDTO) {
         try {
             Engineer engineer = engineerRepo
-                    .getById(workOrderDTO.getEngineerId());//.findById(workOrderDTO.getEngineerId())
-                    //.orElseThrow(() -> new EngineerNotFoundException("this Engineer not found"));
+                    .getById(workOrderDTO.getEngineerId());
 
             Manufacturer manufacturer = manufacturerRepo
                     .getById(workOrderDTO.getManufacturerId());
-//                    .findById(workOrderDTO.getManufacturerId())
-//                    .orElseThrow(() -> new ManufacturerNotFoundException("this manufacturer not found"));
 
             Product product = productRepo
                     .getById(workOrderDTO.getProductId());
-//                    .findById(workOrderDTO.getProductId())
-//                    .orElseThrow(() -> new ProductNotFoundException("this product not found"));
 
             Receiver receiver = receiverRepo
                     .getById(workOrderDTO.getReceiverId());
-//                    .findById(workOrderDTO.getReceiverId())
-//                    .orElseThrow(() -> new ReceiverNotFoundException("this receiver not found"));
+
             ServiceOrder serviceOrder = serviceOrderRepo
                     .getById(workOrderDTO.getServiceId());
-//                    .findById(workOrderDTO.getServiceId())
-//                    .orElseThrow(() -> new ServiceOrderNotFoundException("this serviceOrder not found"));
+
             Status status = statusRepo
                     .getById(workOrderDTO.getStatusId());
-//                    .findById(workOrderDTO.getStatusId())
-//                    .orElseThrow(() -> new StatusNotFoundException("this status not found"));
 
             //Собираем наш заказ/наряд из всего полученного выше
             WorkOrder workOrder = new WorkOrder();
@@ -91,7 +80,22 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     }
 
     @Override
-    public void findById() {
+    public WorkOrderDTOpresent getByNum(Integer id) {
+        WorkOrder workOrder = workOrderRepo.getById(id);
 
+        WorkOrderDTOpresent workOrderDTOpr = new WorkOrderDTOpresent();
+
+        workOrderDTOpr.setCustomerName(workOrder.getCustomerName())
+                .setCustomerPhone(workOrder.getCustomerPhone())
+                .setSerialNumber(workOrder.getSerialNumber())
+                .setEngineerName(workOrder.getEngineer().getEngineerName())
+                .setManufacturerName(workOrder.getManufacturer().getManufacturerName())
+                .setProductName(workOrder.getProduct().getProductName())
+                .setReceiverName(workOrder.getReceiver().getReceiverName())
+                .setServiceName(workOrder.getService().getServiceType())
+                .setStatusName(workOrder.getStatus().getStatusName())
+                .setCreatedAt(workOrder.getCreatedAt());
+
+        return workOrderDTOpr;
     }
 }
