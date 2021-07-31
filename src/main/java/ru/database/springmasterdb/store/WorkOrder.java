@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "work_order")
@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 @DynamicUpdate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Accessors(chain = true)
+@Data
 public class WorkOrder implements Serializable {
 
     @Id

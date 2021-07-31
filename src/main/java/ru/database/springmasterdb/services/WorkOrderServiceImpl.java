@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
-import ru.database.springmasterdb.dto.WorkOrderDTOpresent;
+import ru.database.springmasterdb.factories.WorkOrderDTOFactory;
+import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
+import ru.database.springmasterdb.factories.WorkOrderFactory;
 import ru.database.springmasterdb.store.*;
-
-import java.time.LocalDateTime;
 
 @Service
 public class WorkOrderServiceImpl implements WorkOrderService {
@@ -22,11 +22,13 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     private final ReceiverRepo receiverRepo;
     private final ServiceOrderRepo serviceOrderRepo;
     private final StatusRepo statusRepo;
+    private final WorkOrderDTOFactory workOrderDTOFactory;
+    private final WorkOrderFactory workOrderFactory;
 
     @Autowired
     public WorkOrderServiceImpl(WorkOrderRepo workOrderRepo, EngineerRepo engineerRepo, ManufacturerRepo manufacturerRepo,
                                 ProductRepo productRepo, ReceiverRepo receiverRepo, ServiceOrderRepo serviceOrderRepo,
-                                StatusRepo statusRepo) {
+                                StatusRepo statusRepo, WorkOrderDTOFactory workOrderDTOFactory, WorkOrderFactory workOrderFactory) {
         this.workOrderRepo = workOrderRepo;
         this.engineerRepo = engineerRepo;
         this.manufacturerRepo = manufacturerRepo;
@@ -34,6 +36,8 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         this.receiverRepo = receiverRepo;
         this.serviceOrderRepo = serviceOrderRepo;
         this.statusRepo = statusRepo;
+        this.workOrderDTOFactory = workOrderDTOFactory;
+        this.workOrderFactory = workOrderFactory;
     }
 
     @Override
@@ -59,17 +63,8 @@ public class WorkOrderServiceImpl implements WorkOrderService {
                     .getById(workOrderDTO.getStatusId());
 
             //Собираем наш заказ/наряд из всего полученного выше
-            WorkOrder workOrder = new WorkOrder();
-            workOrder.setCreatedAt(LocalDateTime.now())
-                    .setCustomerName(workOrderDTO.getCustomerName())
-                    .setCustomerPhone(workOrderDTO.getCustomerPhone())
-                    .setSerialNumber(workOrderDTO.getSerialNumber())
-                    .setEngineer(engineer)
-                    .setManufacturer(manufacturer)
-                    .setProduct(product)
-                    .setReceiver(receiver)
-                    .setService(serviceOrder)
-                    .setStatus(status);
+            WorkOrder workOrder = workOrderFactory.createWorkOrder(workOrderDTO, engineer, manufacturer,
+                    product, receiver, serviceOrder, status);
 
             workOrderRepo.saveAndFlush(workOrder);
 
@@ -80,22 +75,9 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     }
 
     @Override
-    public WorkOrderDTOpresent getByNum(Integer id) {
+    public WorkOrderDtoPresent getByNum(Integer id) {
         WorkOrder workOrder = workOrderRepo.getById(id);
 
-        WorkOrderDTOpresent workOrderDTOpr = new WorkOrderDTOpresent();
-
-        workOrderDTOpr.setCustomerName(workOrder.getCustomerName())
-                .setCustomerPhone(workOrder.getCustomerPhone())
-                .setSerialNumber(workOrder.getSerialNumber())
-                .setEngineerName(workOrder.getEngineer().getEngineerName())
-                .setManufacturerName(workOrder.getManufacturer().getManufacturerName())
-                .setProductName(workOrder.getProduct().getProductName())
-                .setReceiverName(workOrder.getReceiver().getReceiverName())
-                .setServiceName(workOrder.getService().getServiceType())
-                .setStatusName(workOrder.getStatus().getStatusName())
-                .setCreatedAt(workOrder.getCreatedAt());
-
-        return workOrderDTOpr;
+        return workOrderDTOFactory.createWorkOrderDTOPresent(workOrder);
     }
 }

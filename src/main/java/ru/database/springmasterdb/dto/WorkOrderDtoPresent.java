@@ -1,20 +1,15 @@
 package ru.database.springmasterdb.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import lombok.experimental.Accessors;
+import lombok.*;
 
 import java.time.LocalDateTime;
-
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Accessors(chain = true)
-public class WorkOrderDTOpresent {
+public class WorkOrderDtoPresent {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime createdAt;  //дата приёмки
     private String customerName;

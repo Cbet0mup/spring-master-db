@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
-import ru.database.springmasterdb.dto.WorkOrderDTOpresent;
+import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
 import ru.database.springmasterdb.services.WorkOrderServiceImpl;
 
 @RestController
@@ -36,8 +36,8 @@ public class WorkOrderController {
     }
 
     @GetMapping("/findworkorderbyid/{id}")
-    public ResponseEntity<WorkOrderDTOpresent> getWorkorderById(@PathVariable("id") Integer id, Model model){
-       WorkOrderDTOpresent workOrderDTOpr = workOrderServiceImpl.getByNum(id);
+    public ResponseEntity<WorkOrderDtoPresent> getWorkorderById(@PathVariable("id") Integer id, Model model){
+       WorkOrderDtoPresent workOrderDTOpr = workOrderServiceImpl.getByNum(id);
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.FOUND);
     }
 }
