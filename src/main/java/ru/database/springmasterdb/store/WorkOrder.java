@@ -45,6 +45,15 @@ public class WorkOrder implements Serializable {
 
     private String serialNumber;
 
+    private Integer price;   /// стоимость ремонта
+
+    private Integer prepayment;   /// предоплата
+
+    private Boolean isDone;   // статус: готов
+    private Boolean isNeedCall;   // статус: связь с клиентом
+    private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
+    private Boolean isGivenOut;   // статус: готов, клиент извещён
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime dateOfIssue; //дата выдачи
 
