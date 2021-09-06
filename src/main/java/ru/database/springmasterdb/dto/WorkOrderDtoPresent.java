@@ -20,5 +20,4 @@ public class WorkOrderDtoPresent {
     private String manufacturerName;
     private String receiverName;
     private String engineerName;
-    private String statusName;
 }
