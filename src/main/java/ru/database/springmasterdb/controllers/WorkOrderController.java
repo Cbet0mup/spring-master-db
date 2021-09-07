@@ -8,9 +8,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.stylesheets.LinkStyle;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
 import ru.database.springmasterdb.services.WorkOrderServiceImpl;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/workorder", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,9 +38,15 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
     }
 
-    @GetMapping("/findworkorderbyid/{id}")
-    public ResponseEntity<WorkOrderDtoPresent> getWorkorderById(@PathVariable("id") Integer id, Model model){
+    @GetMapping("/findworkorder/{id}")
+    public ResponseEntity<WorkOrderDtoPresent> getWorkorderById(@PathVariable("id") Integer id){
        WorkOrderDtoPresent workOrderDTOpr = workOrderServiceImpl.getByNum(id);
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.FOUND);
+    }
+
+    @GetMapping("/findworkorder/isdone/")
+    public ResponseEntity<Object> findByIsDone (){
+        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAll();
+        return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 }

@@ -9,6 +9,9 @@ import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
 import ru.database.springmasterdb.factories.WorkOrderFactory;
 import ru.database.springmasterdb.store.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class WorkOrderServiceImpl implements WorkOrderService {
 
@@ -79,5 +82,16 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         WorkOrder workOrder = workOrderRepo.getById(id);
 
         return workOrderDTOFactory.createWorkOrderDTOPresent(workOrder);
+    }
+
+    @Override
+    public List<WorkOrderDtoPresent> findAll() {
+        List<WorkOrder> workOrderListRepo = workOrderRepo.findAByIsDoneTrue();
+        List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
+        for (WorkOrder workOrder : workOrderListRepo) {
+            workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+        }
+
+        return workOrderDtoPresents;
     }
 }
