@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Component
 public class WorkOrderFactory {
     public WorkOrder createWorkOrder(WorkOrderDTO workOrderDTO, Engineer engineer, Manufacturer manufacturer,
-                                     Product product, Receiver receiver, ServiceOrder serviceOrder, Status status){
+                                     Product product, Receiver receiver, ServiceOrder serviceOrder, Status status, ModelName modelName){
         return WorkOrder.builder()
                 .createdAt(LocalDateTime.now())
                 .customerName(workOrderDTO.getCustomerName())
@@ -21,6 +21,7 @@ public class WorkOrderFactory {
                 .receiver(receiver)
                 .service(serviceOrder)
                 .status(status)
+                .model(modelName)
                 .build();
     }
 }

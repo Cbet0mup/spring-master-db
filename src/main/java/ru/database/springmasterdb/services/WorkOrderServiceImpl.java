@@ -1,7 +1,6 @@
 package ru.database.springmasterdb.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
@@ -16,9 +15,6 @@ import java.util.List;
 @Service
 public class WorkOrderServiceImpl implements WorkOrderService {
 
-
-    // private final Logger log = LoggerFactory.getLogger(getClass());
-
     private final WorkOrderRepo workOrderRepo;
     private final EngineerRepo engineerRepo;
     private final ManufacturerRepo manufacturerRepo;
@@ -26,13 +22,14 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     private final ReceiverRepo receiverRepo;
     private final ServiceOrderRepo serviceOrderRepo;
     private final StatusRepo statusRepo;
+    private final ModelRepo modelRepo;
     private final WorkOrderDTOFactory workOrderDTOFactory;
     private final WorkOrderFactory workOrderFactory;
 
     @Autowired
     public WorkOrderServiceImpl(WorkOrderRepo workOrderRepo, EngineerRepo engineerRepo, ManufacturerRepo manufacturerRepo,
                                 ProductRepo productRepo, ReceiverRepo receiverRepo, ServiceOrderRepo serviceOrderRepo,
-                                StatusRepo statusRepo, WorkOrderDTOFactory workOrderDTOFactory, WorkOrderFactory workOrderFactory) {
+                                StatusRepo statusRepo, WorkOrderDTOFactory workOrderDTOFactory, WorkOrderFactory workOrderFactory, ModelRepo modelRepo) {
         this.workOrderRepo = workOrderRepo;
         this.engineerRepo = engineerRepo;
         this.manufacturerRepo = manufacturerRepo;
@@ -42,6 +39,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         this.statusRepo = statusRepo;
         this.workOrderDTOFactory = workOrderDTOFactory;
         this.workOrderFactory = workOrderFactory;
+        this.modelRepo = modelRepo;
     }
 
     @Override
@@ -66,9 +64,12 @@ public class WorkOrderServiceImpl implements WorkOrderService {
             Status status = statusRepo
                     .getById(workOrderDTO.getStatusId());
 
+            ModelName modelName = modelRepo
+                    .getById(workOrderDTO.getModelId());
+
             //Собираем наш заказ/наряд из всего полученного выше
             WorkOrder workOrder = workOrderFactory.createWorkOrder(workOrderDTO, engineer, manufacturer,
-                    product, receiver, serviceOrder, status);
+                    product, receiver, serviceOrder, status, modelName);
 
             workOrderRepo.saveAndFlush(workOrder);
 

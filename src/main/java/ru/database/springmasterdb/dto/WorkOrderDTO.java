@@ -19,6 +19,7 @@ public class WorkOrderDTO {
     private String customerName;
     private String customerPhone;
     private String serialNumber;
+    private Long modelId;
     private Long serviceId;
     private Long productId;
     private Long manufacturerId;

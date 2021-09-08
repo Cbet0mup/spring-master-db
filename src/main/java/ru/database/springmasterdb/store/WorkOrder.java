@@ -60,6 +60,10 @@ public class WorkOrder implements Serializable {
     private LocalDateTime dateOfIssue; //дата выдачи
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name = "model_id")
+    private ModelName model;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "service_id")
     private ServiceOrder service;
 
