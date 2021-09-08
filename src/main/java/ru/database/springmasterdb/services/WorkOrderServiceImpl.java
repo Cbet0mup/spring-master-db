@@ -1,6 +1,7 @@
 package ru.database.springmasterdb.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
@@ -85,8 +86,8 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     }
 
     @Override
-    public List<WorkOrderDtoPresent> findAll() {
-        List<WorkOrder> workOrderListRepo = workOrderRepo.findAByIsDoneTrue();
+    public List<WorkOrderDtoPresent> findAllByIsDone(Boolean isDone) {
+        List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsDone(isDone);
         List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
         for (WorkOrder workOrder : workOrderListRepo) {
             workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));

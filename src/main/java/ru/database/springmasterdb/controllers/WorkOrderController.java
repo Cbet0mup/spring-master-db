@@ -44,9 +44,9 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.FOUND);
     }
 
-    @GetMapping("/findworkorder/isdone/")
-    public ResponseEntity<Object> findByIsDone (){
-        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAll();
+    @GetMapping("/findworkorder/isdone/{isDone}")
+    public ResponseEntity<Object> findByIsDone (@PathVariable("isDone") Boolean isDone){
+        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByIsDone(isDone);
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 }
