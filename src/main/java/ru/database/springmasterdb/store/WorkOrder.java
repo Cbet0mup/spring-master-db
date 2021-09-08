@@ -23,7 +23,9 @@ import java.time.LocalDateTime;
 @DynamicUpdate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Accessors(chain = true)
-@Data
+//@Data
+@Getter
+@Setter
 public class WorkOrder implements Serializable {
 
     @Id
