@@ -21,6 +21,6 @@ public class Receiver implements Serializable {                //приёмщи�
 
     private String receiverName;
 
-    @OneToOne(mappedBy = "receiver", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "receiver", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private WorkOrder workOrder;
 }

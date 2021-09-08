@@ -21,7 +21,7 @@ public class Engineer implements Serializable {             ///master
 
     private String engineerName;
 
-    @OneToOne(mappedBy = "engineer", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "engineer", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private WorkOrder workOrder;
 
 

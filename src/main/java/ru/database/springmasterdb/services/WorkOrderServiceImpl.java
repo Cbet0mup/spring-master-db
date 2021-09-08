@@ -95,4 +95,15 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
         return workOrderDtoPresents;
     }
+
+    @Override
+    public List<WorkOrderDtoPresent> findAllWorkOrders() {
+        List<WorkOrder> workOrderListRepo = workOrderRepo.findAll();
+        List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
+        for (WorkOrder workOrder : workOrderListRepo) {
+            workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+        }
+
+        return workOrderDtoPresents;
+    }
 }

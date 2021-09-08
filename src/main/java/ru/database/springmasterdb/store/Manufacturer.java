@@ -20,7 +20,7 @@ public class Manufacturer implements Serializable {                 //произ
 
     private String manufacturerName;
 
-    @OneToOne(mappedBy = "manufacturer", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "manufacturer", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private WorkOrder workOrder;
 
 }

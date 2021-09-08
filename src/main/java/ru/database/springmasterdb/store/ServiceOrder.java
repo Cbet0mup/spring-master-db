@@ -21,6 +21,6 @@ public class ServiceOrder implements Serializable {
 
     private String serviceType;
 
-    @OneToOne(mappedBy = "service", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "service", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private WorkOrder workOrder;
 }

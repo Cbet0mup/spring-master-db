@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.stylesheets.LinkStyle;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
 import ru.database.springmasterdb.services.WorkOrderServiceImpl;
@@ -39,14 +37,20 @@ public class WorkOrderController {
     }
 
     @GetMapping("/findworkorder/{id}")
-    public ResponseEntity<WorkOrderDtoPresent> getWorkorderById(@PathVariable("id") Integer id){
-       WorkOrderDtoPresent workOrderDTOpr = workOrderServiceImpl.getByNum(id);
-        return new ResponseEntity<>(workOrderDTOpr, HttpStatus.FOUND);
+    public ResponseEntity<WorkOrderDtoPresent> getWorkorderById(@PathVariable("id") Integer id) {
+        WorkOrderDtoPresent workOrderDTOpr = workOrderServiceImpl.getByNum(id);
+        return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 
     @GetMapping("/findworkorder/isdone/{isDone}")
-    public ResponseEntity<Object> findByIsDone (@PathVariable("isDone") Boolean isDone){
+    public ResponseEntity<List<WorkOrderDtoPresent>> findByIsDone(@PathVariable("isDone") Boolean isDone) {
         List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByIsDone(isDone);
+        return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
+    }
+
+    @GetMapping("/findworkorder/all")
+    public ResponseEntity<List<WorkOrderDtoPresent>> getAllWorkOrders() {
+        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllWorkOrders();
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 }

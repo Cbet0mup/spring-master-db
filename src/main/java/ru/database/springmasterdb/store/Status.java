@@ -21,6 +21,6 @@ public class Status implements Serializable {                   //в ремон�
 
     private String statusName;
 
-    @OneToOne(mappedBy = "status", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "status", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private WorkOrder workOrder;
 }
