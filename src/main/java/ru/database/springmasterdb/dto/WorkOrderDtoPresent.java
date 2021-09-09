@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class WorkOrderDtoPresent {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime createdAt;  //дата приёмки
+    private Integer id;
     private String customerName;
     private String customerPhone;
     private String serialNumber;

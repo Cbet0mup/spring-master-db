@@ -8,6 +8,7 @@ import ru.database.springmasterdb.store.WorkOrder;
 public class WorkOrderDTOFactory {
     public WorkOrderDtoPresent createWorkOrderDTOPresent(WorkOrder workOrder) {
         return WorkOrderDtoPresent.builder()
+                .id(workOrder.getId())
                 .createdAt(workOrder.getCreatedAt())
                 .customerName(workOrder.getCustomerName())
                 .customerPhone(workOrder.getCustomerPhone())
