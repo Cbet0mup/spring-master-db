@@ -1,6 +1,6 @@
 package ru.database.springmasterdb.services;
 
-import org.springframework.data.jpa.repository.Query;
+
 import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
 import ru.database.springmasterdb.exceptions.EngineerNotFoundException;
@@ -15,4 +15,5 @@ public interface WorkOrderService {
 
     List<WorkOrderDtoPresent> findAllByIsDone(Boolean isDone);
     List<WorkOrderDtoPresent> findAllWorkOrders();
+    List<WorkOrderDtoPresent> findAllWorkOrdersIsNeedCall(Boolean isNeedCall);
 }

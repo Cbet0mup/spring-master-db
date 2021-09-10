@@ -51,7 +51,7 @@ public class WorkOrder implements Serializable {
 
     private Integer prepayment;   /// предоплата
 
-    private boolean isDone;   // статус: готов
+    private Boolean isDone;   // статус: готов
     private Boolean isNeedCall;   // статус: связь с клиентом
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
     private Boolean isGivenOut;   // статус: готов, клиент извещён

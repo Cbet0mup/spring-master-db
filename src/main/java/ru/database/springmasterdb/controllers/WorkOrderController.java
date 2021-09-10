@@ -3,6 +3,7 @@ package ru.database.springmasterdb.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -36,21 +37,27 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
     }
 
-    @GetMapping("/findworkorder/{id}")
+    @GetMapping("/findworkorder/{id}")  //найти один по номеру
     public ResponseEntity<WorkOrderDtoPresent> getWorkorderById(@PathVariable("id") Integer id) {
         WorkOrderDtoPresent workOrderDTOpr = workOrderServiceImpl.getByNum(id);
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 
-    @GetMapping("/findworkorder/isdone/{isDone}")
+    @GetMapping("/findworkorder/isdone/{isDone}") /// найти все готовые
     public ResponseEntity<List<WorkOrderDtoPresent>> findByIsDone(@PathVariable("isDone") Boolean isDone) {
         List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByIsDone(isDone);
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 
-    @GetMapping("/findworkorder/all")
+    @GetMapping("/findworkorder/all")  // найти все
     public ResponseEntity<List<WorkOrderDtoPresent>> getAllWorkOrders() {
         List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllWorkOrders();
+        return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
+    }
+
+    @GetMapping("/findworkorder/isneedcall/{isNeedCall}")
+    public ResponseEntity<List<WorkOrderDtoPresent>> getAllWorkOrdersIsNeedCall(@PathVariable("isNeedCall") Boolean isNeedCall) {
+        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByIsDone(isNeedCall);
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 }
