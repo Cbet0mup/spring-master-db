@@ -19,6 +19,10 @@ public class WorkOrderDTO {
     private String customerName;
     private String customerPhone;
     private String serialNumber;
+    private Boolean isNeedCall;
+    private Boolean isDone;
+    private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
+    private Boolean isGivenOut;   // статус: готов, клиент извещён
     private Long modelId;
     private Long serviceId;
     private Long productId;

@@ -40,12 +40,7 @@ public class WorkOrderController {
     @GetMapping("/findworkorder/{id}")  //найти один по номеру
     public ResponseEntity<WorkOrderDtoPresent> getWorkorderById(@PathVariable("id") Integer id) {
         WorkOrderDtoPresent workOrderDTOpr = workOrderServiceImpl.getByNum(id);
-        return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
-    }
-
-    @GetMapping("/findworkorder/isdone/{isDone}") /// найти все готовые
-    public ResponseEntity<List<WorkOrderDtoPresent>> findByIsDone(@PathVariable("isDone") Boolean isDone) {
-        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByIsDone(isDone);
+        System.out.println(workOrderDTOpr.toString());
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 
@@ -55,9 +50,15 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 
-    @GetMapping("/findworkorder/isneedcall/{isNeedCall}")
+    @GetMapping("/findworkorder/isdone/{isDone}") /// найти все готовые
+    public ResponseEntity<List<WorkOrderDtoPresent>> findByIsDone(@PathVariable("isDone") Boolean isDone) {
+        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByIsDone(isDone);
+        return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
+    }
+
+    @GetMapping("/findworkorder/isneedcall/{isNeedCall}")  //найти все требующие обзвона
     public ResponseEntity<List<WorkOrderDtoPresent>> getAllWorkOrdersIsNeedCall(@PathVariable("isNeedCall") Boolean isNeedCall) {
-        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByIsDone(isNeedCall);
+        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllWorkOrdersIsNeedCall(isNeedCall);
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 }

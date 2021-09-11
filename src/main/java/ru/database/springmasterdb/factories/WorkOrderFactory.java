@@ -22,6 +22,10 @@ public class WorkOrderFactory {
                 .service(serviceOrder)
                 .status(status)
                 .model(modelName)
+                .isNeedCall(workOrderDTO.getIsNeedCall())
+                .isDone(workOrderDTO.getIsDone())
+                .isDoneIsCalled(workOrderDTO.getIsDoneIsCalled())
+                .isGivenOut(workOrderDTO.getIsGivenOut())
                 .build();
     }
 }

@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface WorkOrderRepo extends JpaRepository<WorkOrder, Integer> {
 
-    @Query("select w from WorkOrder w where w.isDone = :isDone order by w.id ASC")
-    List<WorkOrder> findAllByIsDone(@Param("isDone") Boolean isDone);
+    //@Query("select w from WorkOrder w where w.isDone = :isDone")
+    List<WorkOrder> findAllByIsDone(Boolean isDone);
 
-    @Query("select w from WorkOrder w where w.isNeedCall = :isNeedCall")
-    List<WorkOrder> findAllByIsNeedCall(@Param("IsNeedCall") Boolean isNeedCall);
+   // @Query("select i from WorkOrder i where i.isNeedCall = :isNeedCall")
+    List<WorkOrder> findAllByIsNeedCall(Boolean isNeedCall);
 }
