@@ -40,7 +40,6 @@ public class WorkOrderController {
     @GetMapping("/findworkorder/{id}")  //найти один по номеру
     public ResponseEntity<WorkOrderDtoPresent> getWorkorderById(@PathVariable("id") Integer id) {
         WorkOrderDtoPresent workOrderDTOpr = workOrderServiceImpl.getByNum(id);
-        System.out.println(workOrderDTOpr.toString());
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 

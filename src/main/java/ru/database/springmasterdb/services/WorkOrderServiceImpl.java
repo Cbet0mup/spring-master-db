@@ -2,6 +2,7 @@ package ru.database.springmasterdb.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
@@ -83,13 +84,15 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     @Override
     public WorkOrderDtoPresent getByNum(Integer id) {
         WorkOrder workOrder = workOrderRepo.getById(id);
-
         return workOrderDTOFactory.createWorkOrderDTOPresent(workOrder);
     }
 
     @Override
     public List<WorkOrderDtoPresent> findAllWorkOrders() {
-        List<WorkOrder> workOrderListRepo = workOrderRepo.findAll();
+        Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
+
+        List<WorkOrder> workOrderListRepo = workOrderRepo.findAll(isNeedCallSort);
+
         List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
         for (WorkOrder workOrder : workOrderListRepo) {
             workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
@@ -100,7 +103,9 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     @Override
     public List<WorkOrderDtoPresent> findAllByIsDone(Boolean isDone) {
-        List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsDone(isDone);
+        Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
+
+        List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsDone(isDone, isNeedCallSort);
 
         List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
         for (WorkOrder workOrder : workOrderListRepo) {
@@ -112,8 +117,9 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     @Override
     public List<WorkOrderDtoPresent> findAllWorkOrdersIsNeedCall(Boolean isNeedCall) {
-        //Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
-        List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsNeedCall(isNeedCall);
+        Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
+
+        List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsNeedCall(isNeedCall, isNeedCallSort);
 
         List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
         for (WorkOrder workOrder : workOrderListRepo) {

@@ -19,6 +19,10 @@ public class WorkOrderDTOFactory {
                 .serialNumber(workOrder.getSerialNumber())
                 .serviceName(workOrder.getService().getServiceType())
                 .modelName(workOrder.getModel().getModelName())
+                .isDone(workOrder.getIsDone())
+                .isDoneIsCalled(workOrder.getIsDoneIsCalled())
+                .isGivenOut(workOrder.getIsGivenOut())
+                .isNeedCall(workOrder.getIsNeedCall())
                 .build();
 
     }
