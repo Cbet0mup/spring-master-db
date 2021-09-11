@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "work_order")
-@EqualsAndHashCode(of = {"id"})
+//@EqualsAndHashCode(of = {"id"})
 @DynamicInsert
 @DynamicUpdate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 public class WorkOrder implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "jpaSequence", sequenceName = "JPA_SEQUENCE", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(name = "jpaSequence", sequenceName = "JPA_SEQUENCE", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jpaSequence")
     @Column(updatable = false, nullable = false)
     private Integer id;
