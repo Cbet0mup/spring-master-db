@@ -27,10 +27,11 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     private final ModelRepo modelRepo;
     private final WorkOrderDTOFactory workOrderDTOFactory;
     private final WorkOrderFactory workOrderFactory;
+    private final PriceRepo priceRepo;
 
     @Autowired
     public WorkOrderServiceImpl(WorkOrderRepo workOrderRepo, EngineerRepo engineerRepo, ManufacturerRepo manufacturerRepo,
-                                ProductRepo productRepo, ReceiverRepo receiverRepo, ServiceOrderRepo serviceOrderRepo,
+                                ProductRepo productRepo, ReceiverRepo receiverRepo, ServiceOrderRepo serviceOrderRepo, PriceRepo priceRepo,
                                 StatusRepo statusRepo, WorkOrderDTOFactory workOrderDTOFactory, WorkOrderFactory workOrderFactory, ModelRepo modelRepo) {
         this.workOrderRepo = workOrderRepo;
         this.engineerRepo = engineerRepo;
@@ -42,6 +43,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         this.workOrderDTOFactory = workOrderDTOFactory;
         this.workOrderFactory = workOrderFactory;
         this.modelRepo = modelRepo;
+        this.priceRepo = priceRepo;
     }
 
     @Override
@@ -68,10 +70,12 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
             ModelName modelName = modelRepo
                     .getById(workOrderDTO.getModelId());
+            Price price = priceRepo
+                    .getById(workOrderDTO.getPriceId());
 
             //Собираем наш заказ/наряд из всего полученного выше
             WorkOrder workOrder = workOrderFactory.createWorkOrder(workOrderDTO, engineer, manufacturer,
-                    product, receiver, serviceOrder, status, modelName);
+                    product, receiver, serviceOrder, status, modelName, price);
 
             workOrderRepo.saveAndFlush(workOrder);
 

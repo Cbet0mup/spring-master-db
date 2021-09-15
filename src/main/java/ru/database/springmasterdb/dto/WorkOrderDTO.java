@@ -16,20 +16,21 @@ public class WorkOrderDTO {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime createdAt;  //дата приёмки
-    private String customerName;
-    private String customerPhone;
-    private String serialNumber;
-    private String imei;
-    private Boolean isNeedCall;
-    private Boolean isDone;
+    private String customerName;        //  заказчик
+    private String customerPhone;       //
+    private String serialNumber;        //
+    private String imei;                //
+    private Boolean isNeedCall;   // звонок нужен
+    private Boolean isDone;   //готов
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
     private Boolean isGivenOut;   // статус: готов, клиент извещён
-    private Long modelId;
-    private Long serviceId;
-    private Long productId;
-    private Long manufacturerId;
-    private Long receiverId;
-    private Long engineerId;
-    private Long statusId;
+    private Long modelId;       //  модель
+    private Long serviceId;     //платный, гарантийный
+    private Long productId;             //тип: телек, стиралка
+    private Long manufacturerId;        //марка: производитель
+    private Long receiverId;        //приёмщик
+    private Long engineerId;        //мастер
+    private Long statusId;          //принят, выдан, на звонке
+    private Long priceId;           //прайс, тип устройства и цена
 
 }

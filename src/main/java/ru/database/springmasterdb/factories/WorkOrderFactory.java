@@ -9,12 +9,14 @@ import java.time.LocalDateTime;
 @Component
 public class WorkOrderFactory {
     public WorkOrder createWorkOrder(WorkOrderDTO workOrderDTO, Engineer engineer, Manufacturer manufacturer,
-                                     Product product, Receiver receiver, ServiceOrder serviceOrder, Status status, ModelName modelName){
+                                     Product product, Receiver receiver, ServiceOrder serviceOrder, Status status, ModelName modelName,
+                                     Price price){
         return WorkOrder.builder()
                 .createdAt(LocalDateTime.now())
                 .customerName(workOrderDTO.getCustomerName())
                 .customerPhone(workOrderDTO.getCustomerPhone())
                 .serialNumber(workOrderDTO.getSerialNumber())
+                .price(price)
                 .imei(workOrderDTO.getImei())
                 .engineer(engineer)
                 .manufacturer(manufacturer)

@@ -48,7 +48,7 @@ public class WorkOrder implements Serializable {
     private String serialNumber;
     private String imei;
 
-    private Integer price;   /// стоимость ремонта
+    //private Integer price;   /// стоимость ремонта
 
     private Integer prepayment;   /// предоплата
 
@@ -63,6 +63,10 @@ public class WorkOrder implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "model_id")
     private ModelName model;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name = "price")
+    private Price price;
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "service_id")

@@ -27,4 +27,6 @@ public class WorkOrderDtoPresent {
     private String receiverName;
     private String engineerName;
     private String modelName;
+    private String price; //цена ремонта
+    private String priceName; //тип устройства
 }
