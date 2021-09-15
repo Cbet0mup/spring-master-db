@@ -19,6 +19,7 @@ public class WorkOrderDTO {
     private String customerName;
     private String customerPhone;
     private String serialNumber;
+    private String imei;
     private Boolean isNeedCall;
     private Boolean isDone;
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён

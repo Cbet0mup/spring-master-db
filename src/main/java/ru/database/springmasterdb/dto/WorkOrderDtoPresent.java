@@ -20,6 +20,7 @@ public class WorkOrderDtoPresent {
     private String customerName;
     private String customerPhone;
     private String serialNumber;
+    private String imei;
     private String serviceName;
     private String productName;
     private String manufacturerName;

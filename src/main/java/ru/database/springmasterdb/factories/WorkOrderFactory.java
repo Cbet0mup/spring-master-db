@@ -15,6 +15,7 @@ public class WorkOrderFactory {
                 .customerName(workOrderDTO.getCustomerName())
                 .customerPhone(workOrderDTO.getCustomerPhone())
                 .serialNumber(workOrderDTO.getSerialNumber())
+                .imei(workOrderDTO.getImei())
                 .engineer(engineer)
                 .manufacturer(manufacturer)
                 .product(product)

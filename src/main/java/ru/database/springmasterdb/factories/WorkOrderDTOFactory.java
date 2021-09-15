@@ -17,6 +17,7 @@ public class WorkOrderDTOFactory {
                 .productName(workOrder.getProduct().getProductName())
                 .receiverName(workOrder.getReceiver().getReceiverName())
                 .serialNumber(workOrder.getSerialNumber())
+                .imei(workOrder.getImei())
                 .serviceName(workOrder.getService().getServiceType())
                 .modelName(workOrder.getModel().getModelName())
                 .isDone(workOrder.getIsDone())

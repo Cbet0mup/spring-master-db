@@ -46,6 +46,7 @@ public class WorkOrder implements Serializable {
     private String customerPhone;
 
     private String serialNumber;
+    private String imei;
 
     private Integer price;   /// стоимость ремонта
 
