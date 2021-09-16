@@ -10,6 +10,7 @@ public class WorkOrderDTOFactory {
         return WorkOrderDtoPresent.builder()
                 .id(workOrder.getId())
                 .createdAt(workOrder.getCreatedAt())
+                .givenOut(workOrder.getGivenOut())
                 .customerName(workOrder.getCustomerName())
                 .customerPhone(workOrder.getCustomerPhone())
                 .engineerName(workOrder.getEngineer().getEngineerName())
@@ -26,6 +27,9 @@ public class WorkOrderDTOFactory {
                 .isDoneIsCalled(workOrder.getIsDoneIsCalled())
                 .isGivenOut(workOrder.getIsGivenOut())
                 .isNeedCall(workOrder.getIsNeedCall())
+                .complection(workOrder.getComplection())
+                .look(workOrder.getLook())
+                .trouble(workOrder.getTrouble())
                 .build();
 
     }

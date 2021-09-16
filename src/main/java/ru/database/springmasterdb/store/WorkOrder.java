@@ -37,6 +37,9 @@ public class WorkOrder implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime createdAt;  //дата приёмки
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime givenOut;  //дата выдачи
+
     @NotEmpty(message = "Имя не должно быть пустым.")
     @Size(min = 2, max = 30, message = "Имя должно быть в диапазоне от 2 до 30 символов.")
     private String customerName;
@@ -48,7 +51,9 @@ public class WorkOrder implements Serializable {
     private String serialNumber;
     private String imei;
 
-    //private Integer price;   /// стоимость ремонта
+    private String look;            //внешний вид
+    private String complection;            //комплектация
+    private String trouble;            //неисправность
 
     private Integer prepayment;   /// предоплата
 

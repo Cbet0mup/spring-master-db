@@ -29,6 +29,9 @@ public class WorkOrderFactory {
                 .isDone(workOrderDTO.getIsDone())
                 .isDoneIsCalled(workOrderDTO.getIsDoneIsCalled())
                 .isGivenOut(workOrderDTO.getIsGivenOut())
+                .look(workOrderDTO.getLook())
+                .complection(workOrderDTO.getComplection())
+                .trouble(workOrderDTO.getTrouble())
                 .build();
     }
 }

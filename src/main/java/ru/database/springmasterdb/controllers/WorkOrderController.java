@@ -3,7 +3,6 @@ package ru.database.springmasterdb.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +34,7 @@ public class WorkOrderController {
         workOrderServiceImpl.createWorkOrder(workOrderDTO);
         log.info("Создана сущность з/н: \n" + workOrderDTO.toString());
         return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
+
     }
 
     @GetMapping("/findworkorder/{id}")  //найти один по номеру
