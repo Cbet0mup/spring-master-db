@@ -47,7 +47,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     }
 
     @Override
-    @Transactional                                          //для чтения (readOnly = true)
+    //@Transactional                                          //для чтения (readOnly = true)
     public void createWorkOrder(WorkOrderDTO workOrderDTO) {
         try {
             Engineer engineer = engineerRepo
