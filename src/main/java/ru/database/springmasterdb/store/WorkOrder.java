@@ -34,10 +34,10 @@ public class WorkOrder implements Serializable {
     @Column(updatable = false, nullable = false)
     private Integer id;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime createdAt;  //дата приёмки
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime givenOut;  //дата выдачи
 
     @NotEmpty(message = "Имя не должно быть пустым.")
