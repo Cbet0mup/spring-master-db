@@ -17,11 +17,11 @@ public class Product implements Serializable {              //тип издел�
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
 
     private String productName;
 
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval = true)
     private WorkOrder workOrder;
 
 }
