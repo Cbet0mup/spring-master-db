@@ -77,7 +77,7 @@ public class WorkOrder implements Serializable {
     @JoinColumn(name = "service_id")
     private ServiceOrder service;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
 

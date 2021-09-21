@@ -21,7 +21,7 @@ public class Product implements Serializable {              //тип издел�
 
     private String productName;
 
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private WorkOrder workOrder;
 
 }
