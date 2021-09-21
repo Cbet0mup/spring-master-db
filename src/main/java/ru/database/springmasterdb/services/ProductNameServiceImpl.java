@@ -24,7 +24,7 @@ public class ProductNameServiceImpl implements ProductNameService{
 
     @Override
     public List<ProductNameDTO> findAll() {
-        List<Product> productList = productRepo.findAll();
+        List<Product> productList = productRepo.getAll();
         List<ProductNameDTO> productNameDTOList = new ArrayList<>();
 
         for (Product product : productList){

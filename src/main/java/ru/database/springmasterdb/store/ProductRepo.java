@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ProductRepo extends JpaRepository<Product, Integer> {
 
-    @Query("SELECT * FROM Product ORDER BY id")
-    List<Product> findAll();
+    @Query("FROM Product")
+    List<Product> getAll();
 }
