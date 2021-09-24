@@ -19,9 +19,10 @@ import java.io.Serializable;
 public class ModelName implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
 
     private String modelName;
+    private Integer manufacturerId;
 
     @OneToOne(mappedBy = "model", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private WorkOrder workOrder;
