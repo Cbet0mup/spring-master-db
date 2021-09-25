@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"ignoreUnknown = true"})
 public class Product implements Serializable {              //тип изделия (утюг, телефон)
 
     @Id
@@ -20,8 +20,5 @@ public class Product implements Serializable {              //тип издел�
     private Integer id;
 
     private String productName;
-
-    @ManyToOne(fetch=FetchType.LAZY)
-    private WorkOrder workOrder;
 
 }

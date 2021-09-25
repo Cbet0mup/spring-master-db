@@ -16,16 +16,14 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"ignoreUnknown = true"})
 public class Price implements Serializable {              //прайс
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
 
     private String priceName;       //тип устройства
     private String price;           //цена ремонта
 
-    @OneToOne(mappedBy = "price", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private WorkOrder workOrder;
 }

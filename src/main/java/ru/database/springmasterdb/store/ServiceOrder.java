@@ -12,15 +12,13 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"ignoreUnknown = true"})
 public class ServiceOrder implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
 
     private String serviceType;
 
-    @OneToOne(mappedBy = "service", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-    private WorkOrder workOrder;
 }

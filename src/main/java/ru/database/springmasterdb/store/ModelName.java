@@ -15,15 +15,19 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"ignoreUnknown = true"})
 public class ModelName implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private String modelName;
-    private Integer manufacturerId;
+//    private Integer manufacturerId;
 
-    @OneToOne(mappedBy = "model", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-    private WorkOrder workOrder;
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name = "manufacturer_id")
+    private Manufacturer manufacturer;
+
+//    @OneToOne(mappedBy = "model", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+//    private WorkOrder workOrder;
 }

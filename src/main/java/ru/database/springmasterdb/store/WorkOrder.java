@@ -18,10 +18,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "work_order")
-//@EqualsAndHashCode(of = {"id"})
 @DynamicInsert
 @DynamicUpdate
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"ignoreUnknown = true"})
 @Accessors(chain = true)
 //@Data
 @Getter

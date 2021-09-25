@@ -12,15 +12,13 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"ignoreUnknown = true"})
 public class Status implements Serializable {                   //в ремонте, готов, дозвон, принят
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
 
     private String statusName;
 
-    @OneToOne(mappedBy = "status", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-    private WorkOrder workOrder;
 }
