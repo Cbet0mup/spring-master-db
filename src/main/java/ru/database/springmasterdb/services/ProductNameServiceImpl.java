@@ -32,4 +32,10 @@ public class ProductNameServiceImpl implements ProductNameService{
         }
         return productNameDTOList;
     }
+
+    @Override
+    public void createProductName(ProductNameDTO productNameDTO) {
+        Product product = Product.builder().productName(productNameDTO.getProductName()).build();
+        productRepo.saveAndFlush(product);
+    }
 }

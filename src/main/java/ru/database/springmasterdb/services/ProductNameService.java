@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ProductNameService {
     List<ProductNameDTO> findAll();
+    void createProductName(ProductNameDTO productNameDTO);
 }

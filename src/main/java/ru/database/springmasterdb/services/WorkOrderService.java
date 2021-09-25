@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface WorkOrderService {
 
-    void createWorkOrder(WorkOrderDTO workOrderDTO) throws EngineerNotFoundException;
+    void createWorkOrder(WorkOrderDTO workOrderDTO);
 
     WorkOrderDtoPresent getByNum(Integer id);
 

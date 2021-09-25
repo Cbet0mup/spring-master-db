@@ -32,7 +32,7 @@ public class WorkOrderController {
 
     }
 
-    @PostMapping
+    @PostMapping            //новый наряд
     public ResponseEntity<WorkOrderDTO> createWorkOrder(@RequestBody WorkOrderDTO workOrderDTO) {
         workOrderServiceImpl.createWorkOrder(workOrderDTO);
         log.info("Создана сущность з/н: \n" + workOrderDTO.toString());

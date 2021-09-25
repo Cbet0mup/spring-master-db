@@ -2,17 +2,18 @@ package ru.database.springmasterdb.store;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-//@Data
-@Getter
+@Builder
+@Accessors(chain = true)@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"ignoreUnknown = true"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product implements Serializable {              //тип изделия (утюг, телефон)
 
     @Id

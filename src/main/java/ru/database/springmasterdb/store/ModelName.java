@@ -16,18 +16,15 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"ignoreUnknown = true"})
-public class ModelName implements Serializable {
+public class ModelName implements Serializable {            //модель
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private String modelName;
-//    private Integer manufacturerId;
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
 
-//    @OneToOne(mappedBy = "model", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-//    private WorkOrder workOrder;
 }
