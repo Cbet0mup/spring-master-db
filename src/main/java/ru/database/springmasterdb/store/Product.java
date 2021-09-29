@@ -9,11 +9,12 @@ import java.io.Serializable;
 
 @Entity
 @Builder
-@Accessors(chain = true)@Getter
+@Accessors(chain = true)
+@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"ignoreUnknown = true"})
 public class Product implements Serializable {              //тип изделия (утюг, телефон)
 
     @Id
