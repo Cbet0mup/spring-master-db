@@ -22,7 +22,6 @@ import java.time.LocalDateTime;
 @DynamicUpdate
 @JsonIgnoreProperties({"ignoreUnknown = true"})
 @Accessors(chain = true)
-//@Data
 @Getter
 @Setter
 public class WorkOrder implements Serializable {

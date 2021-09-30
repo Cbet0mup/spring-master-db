@@ -44,4 +44,10 @@ public class ApiFormController {
         List<ManufacturerDTO> manufacturerDTOList = manufacturerService.findAll();
         return new ResponseEntity<>(manufacturerDTOList, HttpStatus.OK);
     }
+
+    @PostMapping("/apiform/manufacturer")
+    public ResponseEntity<ManufacturerDTO> createWorkOrder(@RequestBody ManufacturerDTO manufacturerDTO) {
+        manufacturerService.createManufacturer(manufacturerDTO);
+        return new ResponseEntity<>(manufacturerDTO, HttpStatus.CREATED);
+    }
 }

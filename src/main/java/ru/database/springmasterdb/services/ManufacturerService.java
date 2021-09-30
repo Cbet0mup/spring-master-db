@@ -8,5 +8,5 @@ import java.util.List;
 public interface ManufacturerService {
 
     List<ManufacturerDTO> findAll();
-
+    void createManufacturer(ManufacturerDTO manufacturerDTO);
 }

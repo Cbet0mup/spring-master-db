@@ -29,4 +29,10 @@ public class ManufacturerServiceImpl implements ManufacturerService {
         }
         return manufacturerDTOList;
     }
+
+    @Override
+    public void createManufacturer(ManufacturerDTO manufacturerDTO) {
+        Manufacturer manufacturer = Manufacturer.builder().manufacturerName(manufacturerDTO.getManufacturer()).build();
+        manufacturerRepo.saveAndFlush(manufacturer);
+    }
 }

@@ -1,17 +1,16 @@
 package ru.database.springmasterdb.store;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 
 @Entity
-//@Data
+@Builder
+@Accessors(chain = true)
 @Getter
 @Setter
 @AllArgsConstructor
