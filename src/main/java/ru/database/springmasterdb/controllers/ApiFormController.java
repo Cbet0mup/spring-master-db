@@ -6,8 +6,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.database.springmasterdb.dto.ManufacturerDTO;
+import ru.database.springmasterdb.dto.ModelNameDTO;
 import ru.database.springmasterdb.dto.ProductNameDTO;
 import ru.database.springmasterdb.services.ManufacturerServiceImpl;
+import ru.database.springmasterdb.services.ModelNameServiceImpl;
 import ru.database.springmasterdb.services.ProductNameServiceImpl;
 
 import java.util.List;
@@ -18,13 +20,17 @@ public class ApiFormController {
 
     private final ProductNameServiceImpl productNameService;
     private final ManufacturerServiceImpl manufacturerService;
+    private final ModelNameServiceImpl modelNameService;
 
     @Autowired
-    public ApiFormController(ProductNameServiceImpl productNameService, ManufacturerServiceImpl manufacturerService) {
+    public ApiFormController(ProductNameServiceImpl productNameService, ManufacturerServiceImpl manufacturerService,
+                             ModelNameServiceImpl modelNameService) {
         this.productNameService = productNameService;
         this.manufacturerService = manufacturerService;
+        this.modelNameService = modelNameService;
     }
-                                        // ProductName
+
+    // ProductName
     @GetMapping("/apiform/productname")
     public ResponseEntity<List<ProductNameDTO>> getAllProductName() {
         List<ProductNameDTO> productNameDTOList = productNameService.findAll();
@@ -37,7 +43,7 @@ public class ApiFormController {
         return new ResponseEntity<>(productNameDTO, HttpStatus.CREATED);
     }
 
-                                    //Manufacturer
+    //Manufacturer
 
     @GetMapping("/apiform/manufacturer")
     public ResponseEntity<List<ManufacturerDTO>> getAllManufacturer() {
@@ -50,4 +56,17 @@ public class ApiFormController {
         manufacturerService.createManufacturer(manufacturerDTO);
         return new ResponseEntity<>(manufacturerDTO, HttpStatus.CREATED);
     }
+
+    //Model
+    @GetMapping("/apiform/modelname/{id}")
+    public ResponseEntity<List<ModelNameDTO>> getAllModelByManufacturerId(@PathVariable("id") Integer id) {
+        List<ModelNameDTO> modelNameDTOList = modelNameService.findAllByManId(id);
+        return new ResponseEntity<>(modelNameDTOList, HttpStatus.OK);
+    }
+
+//    @PostMapping("/apiform/manufacturer")
+//    public ResponseEntity<ManufacturerDTO> createWorkOrder(@RequestBody ManufacturerDTO manufacturerDTO) {
+//        manufacturerService.createManufacturer(manufacturerDTO);
+//        return new ResponseEntity<>(manufacturerDTO, HttpStatus.CREATED);
+   // }
 }
