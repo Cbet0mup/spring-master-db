@@ -10,7 +10,7 @@ public class ModelNameDTOFactory {
         return ModelNameDTO.builder()
                 .id(modelName.getId())
                 .modelName(modelName.getModelName())
-                .manufacturerId(modelName.getManufacturer().getId())
+                .manufacturerId(modelName.getManufacturerId())
                 .build();
     }
 }

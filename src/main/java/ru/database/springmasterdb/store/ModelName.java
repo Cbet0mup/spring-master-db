@@ -22,8 +22,9 @@ public class ModelName implements Serializable {            //модель
 
     private String modelName;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinColumn(name = "manufacturer_id")
-    private Manufacturer manufacturer;
+    private Integer manufacturerId;
+//    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+//    @JoinColumn(name = "manufacturer_id")
+//    private Manufacturer manufacturer;
 
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public interface ModelRepo extends JpaRepository<ModelName, Integer> {
     @Query("FROM ModelName")
     List<ModelName> getAll();
-    List<ModelName> findAllByManufacturer_Id(Integer id);
+    List<ModelName> findAllByManufacturerId(Integer id);
 
 
 }

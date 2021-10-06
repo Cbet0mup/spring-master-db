@@ -64,9 +64,9 @@ public class ApiFormController {
         return new ResponseEntity<>(modelNameDTOList, HttpStatus.OK);
     }
 
-//    @PostMapping("/apiform/manufacturer")
-//    public ResponseEntity<ManufacturerDTO> createWorkOrder(@RequestBody ManufacturerDTO manufacturerDTO) {
-//        manufacturerService.createManufacturer(manufacturerDTO);
-//        return new ResponseEntity<>(manufacturerDTO, HttpStatus.CREATED);
-   // }
+    @PostMapping("/apiform/modelname")
+    public ResponseEntity<ModelNameDTO> createWorkOrder(@RequestBody ModelNameDTO modelNameDTO) {
+        modelNameService.createModelName(modelNameDTO);
+        return new ResponseEntity<>(modelNameDTO, HttpStatus.CREATED);
+    }
 }

@@ -32,7 +32,7 @@ public class ModelNameServiceImpl implements ModelNameService{
 
     @Override
     public List<ModelNameDTO> findAllByManId(Integer id) {
-        List<ModelName> modelNameList = modelRepo.findAllByManufacturer_Id(id);
+        List<ModelName> modelNameList = modelRepo.findAllByManufacturerId(id);
         List<ModelNameDTO> modelNameDTOList = new ArrayList<>();
         for (ModelName modelName : modelNameList){
             modelNameDTOList.add(modelNameDTOFactory.createModelNameDTO(modelName));
@@ -42,6 +42,7 @@ public class ModelNameServiceImpl implements ModelNameService{
 
     @Override
     public void createModelName(ModelNameDTO modelNameDTO) {
-
+        ModelName modelName = ModelName.builder().modelName(modelNameDTO.getModelName()).manufacturerId(modelNameDTO.getManufacturerId()).build();
+        modelRepo.saveAndFlush(modelName);
     }
 }
