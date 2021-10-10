@@ -39,11 +39,9 @@ public class WorkOrder implements Serializable {
     private LocalDateTime givenOut;  //дата выдачи
 
     @NotEmpty(message = "Имя не должно быть пустым.")
-    @Size(min = 2, max = 30, message = "Имя должно быть в диапазоне от 2 до 30 символов.")
     private String customerName;
 
     @NotEmpty(message = "Требуется ввести номер телефона.")
-    @Size(min = 6, max = 16, message = "Неправильный размер номера.")
     private String customerPhone;
 
     private String serialNumber;
@@ -65,15 +63,15 @@ public class WorkOrder implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "model_id")
-    private ModelName model;
+    private ModelName model;            //модель аппарата
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "price")
-    private Price price;
+    private Price price;                //базовая стоимость ремонта
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "service_id")
-    private ServiceOrder service;
+    private ServiceOrder service;           //платный, гарантийный
 
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "product_id")

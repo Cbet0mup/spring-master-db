@@ -30,11 +30,11 @@ public class WorkOrderDTO {
     private Boolean isGivenOut;   // статус: готов, клиент извещён
     private Integer modelId;       //  модель
     private Integer serviceId;     //платный, гарантийный
-    private Integer productId;             //тип: телек, стиралка
+    private Integer productId;             //тип: телек, стиралка краткий
     private Integer manufacturerId;        //марка: производитель
     private Integer receiverId;        //приёмщик
     private Integer engineerId;        //мастер
     private Integer statusId;          //принят, выдан, на звонке
-    private Integer priceId;           //прайс, тип устройства и цена
+    private Integer priceId;           //прайс, тип устройства подробный и цена
 
 }

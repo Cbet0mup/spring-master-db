@@ -22,7 +22,8 @@ public class Price implements Serializable {              //прайс
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    private String priceName;       //тип устройства
+    private String priceName;       //тип изделия подробный
     private String price;           //цена ремонта
+    private Integer productId;         //отношение к краткому типу
 
 }

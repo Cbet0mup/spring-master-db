@@ -15,7 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"ignoreUnknown = true"})
-public class Product implements Serializable {              //тип изделия (утюг, телефон)
+public class Product implements Serializable {              //тип изделия (утюг, телефон) краткий, обобщённый
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

@@ -21,6 +21,6 @@ public class ServiceOrder implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    private String serviceType;
+    private String serviceType;  //платный, гарантийный
 
 }

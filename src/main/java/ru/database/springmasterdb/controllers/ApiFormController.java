@@ -5,12 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.database.springmasterdb.dto.ManufacturerDTO;
-import ru.database.springmasterdb.dto.ModelNameDTO;
-import ru.database.springmasterdb.dto.ProductNameDTO;
-import ru.database.springmasterdb.services.ManufacturerServiceImpl;
-import ru.database.springmasterdb.services.ModelNameServiceImpl;
-import ru.database.springmasterdb.services.ProductNameServiceImpl;
+import ru.database.springmasterdb.dto.*;
+import ru.database.springmasterdb.services.*;
 
 import java.util.List;
 
@@ -21,13 +17,17 @@ public class ApiFormController {
     private final ProductNameServiceImpl productNameService;
     private final ManufacturerServiceImpl manufacturerService;
     private final ModelNameServiceImpl modelNameService;
+    private final PriceServiceImpl priceService;
+    private final ServiceOrderServiceImpl serviceOrderService;
 
     @Autowired
     public ApiFormController(ProductNameServiceImpl productNameService, ManufacturerServiceImpl manufacturerService,
-                             ModelNameServiceImpl modelNameService) {
+                             ModelNameServiceImpl modelNameService, PriceServiceImpl priceService, ServiceOrderServiceImpl serviceOrderService) {
         this.productNameService = productNameService;
         this.manufacturerService = manufacturerService;
         this.modelNameService = modelNameService;
+        this.priceService = priceService;
+        this.serviceOrderService = serviceOrderService;
     }
 
     // ProductName
@@ -68,5 +68,32 @@ public class ApiFormController {
     public ResponseEntity<ModelNameDTO> createWorkOrder(@RequestBody ModelNameDTO modelNameDTO) {
         modelNameService.createModelName(modelNameDTO);
         return new ResponseEntity<>(modelNameDTO, HttpStatus.CREATED);
+    }
+
+    //Price
+    @GetMapping("/apiform/price/{productId}")
+    public ResponseEntity<List<PriceDTO>> getAllPrice(@PathVariable("productId") Integer id) {
+        List<PriceDTO> priceDTOList = priceService.findAllByProductId(id);
+        return new ResponseEntity<>(priceDTOList, HttpStatus.OK);
+    }
+
+    @PostMapping("/apiform/price")
+    public ResponseEntity<PriceDTO> createWorkOrder(@RequestBody PriceDTO priceDTO) {
+        priceService.createPrice(priceDTO);
+        return new ResponseEntity<>(priceDTO, HttpStatus.CREATED);
+    }
+
+    //ServiceOrder
+
+    @GetMapping("/apiform/service")
+    public ResponseEntity<List<ServiceOrderDTO>> getAllServiceOrders() {
+        List<ServiceOrderDTO> serviceOrderDTOList = serviceOrderService.findAll();
+        return new ResponseEntity<>(serviceOrderDTOList, HttpStatus.OK);
+    }
+
+    @PostMapping("/apiform/service")
+    public ResponseEntity<ServiceOrderDTO> createWorkOrder(@RequestBody ServiceOrderDTO serviceOrderDTO) {
+        serviceOrderService.createServiceOrder(serviceOrderDTO);
+        return new ResponseEntity<>(serviceOrderDTO, HttpStatus.CREATED);
     }
 }

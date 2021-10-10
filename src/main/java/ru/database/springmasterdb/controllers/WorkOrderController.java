@@ -1,6 +1,5 @@
 package ru.database.springmasterdb.controllers;
 
-import org.hibernate.mapping.Collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,7 @@ import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
 import ru.database.springmasterdb.services.WorkOrderServiceImpl;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/workorder", produces = MediaType.APPLICATION_JSON_VALUE)

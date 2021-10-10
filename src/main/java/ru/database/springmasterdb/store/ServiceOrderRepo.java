@@ -1,7 +1,10 @@
 package ru.database.springmasterdb.store;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.database.springmasterdb.store.ServiceOrder;
+import org.springframework.data.jpa.repository.Query;
+import java.util.List;
 
 public interface ServiceOrderRepo extends JpaRepository<ServiceOrder, Integer> {
+    @Query("FROM ServiceOrder")
+    List<ServiceOrder> getAll();
 }
