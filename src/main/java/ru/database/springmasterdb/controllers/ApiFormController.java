@@ -19,15 +19,17 @@ public class ApiFormController {
     private final ModelNameServiceImpl modelNameService;
     private final PriceServiceImpl priceService;
     private final ServiceOrderServiceImpl serviceOrderService;
+    private final EngineerServiceImpl engineerService;
 
     @Autowired
     public ApiFormController(ProductNameServiceImpl productNameService, ManufacturerServiceImpl manufacturerService,
-                             ModelNameServiceImpl modelNameService, PriceServiceImpl priceService, ServiceOrderServiceImpl serviceOrderService) {
+                             ModelNameServiceImpl modelNameService, PriceServiceImpl priceService, ServiceOrderServiceImpl serviceOrderService, EngineerServiceImpl engineerService) {
         this.productNameService = productNameService;
         this.manufacturerService = manufacturerService;
         this.modelNameService = modelNameService;
         this.priceService = priceService;
         this.serviceOrderService = serviceOrderService;
+        this.engineerService = engineerService;
     }
 
     // ProductName
@@ -95,5 +97,19 @@ public class ApiFormController {
     public ResponseEntity<ServiceOrderDTO> createWorkOrder(@RequestBody ServiceOrderDTO serviceOrderDTO) {
         serviceOrderService.createServiceOrder(serviceOrderDTO);
         return new ResponseEntity<>(serviceOrderDTO, HttpStatus.CREATED);
+    }
+
+    //Engineer
+
+    @GetMapping("/apiform/engineer")
+    public ResponseEntity<List<EngineerDTO>> getAllEngineers() {
+        List<EngineerDTO> engineerDTOList = engineerService.findAll();
+        return new ResponseEntity<>(engineerDTOList, HttpStatus.OK);
+    }
+
+    @PostMapping("/apiform/engineer")
+    public ResponseEntity<EngineerDTO> createWorkOrder(@RequestBody EngineerDTO engineerDTO) {
+        engineerService.createNewEngineer(engineerDTO);
+        return new ResponseEntity<>(engineerDTO, HttpStatus.CREATED);
     }
 }

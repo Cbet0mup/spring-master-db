@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class ServiceOrder implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
     private String serviceType;  //платный, гарантийный

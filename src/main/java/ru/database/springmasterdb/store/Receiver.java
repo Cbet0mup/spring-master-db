@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class Receiver implements Serializable {                //приёмщик
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
     private String receiverName;

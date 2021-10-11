@@ -5,7 +5,6 @@ import ru.database.springmasterdb.dto.PriceDTO;
 import ru.database.springmasterdb.factories.PriceDTOFactory;
 import ru.database.springmasterdb.store.Price;
 import ru.database.springmasterdb.store.PriceRepo;
-
 import java.util.ArrayList;
 import java.util.List;
 

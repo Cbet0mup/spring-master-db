@@ -27,8 +27,8 @@ import java.time.LocalDateTime;
 public class WorkOrder implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "jpaSequence", sequenceName = "JPA_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jpaSequence")
+    //@SequenceGenerator(name = "jpaSequence", sequenceName = "JPA_SEQUENCE", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(updatable = false, nullable = false)
     private Integer id;
 

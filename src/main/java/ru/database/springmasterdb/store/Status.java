@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class Status implements Serializable {                   //в ремонте, готов, дозвон, принят
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
     private String statusName;

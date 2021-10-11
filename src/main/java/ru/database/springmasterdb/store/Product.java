@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class Product implements Serializable {              //тип изделия (утюг, телефон) краткий, обобщённый
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
     private String productName;
