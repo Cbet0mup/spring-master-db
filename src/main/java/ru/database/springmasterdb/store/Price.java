@@ -24,6 +24,6 @@ public class Price implements Serializable {              //прайс
 
     private String priceName;       //тип изделия подробный
     private String price;           //цена ремонта
-    private Integer productId;         //отношение к краткому типу
+    private Integer productId;         //отношение к краткому типу - Product
 
 }
