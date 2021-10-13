@@ -27,8 +27,7 @@ import java.time.LocalDateTime;
 public class WorkOrder implements Serializable {
 
     @Id
-    //@SequenceGenerator(name = "jpaSequence", sequenceName = "JPA_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(updatable = false, nullable = false)
     private Integer id;
 
@@ -51,7 +50,8 @@ public class WorkOrder implements Serializable {
     private String complection;            //комплектация
     private String trouble;            //неисправность
 
-    private Integer prepayment;   /// предоплата
+    private String prepayment;   /// предоплата
+    private String finalPrice;   /// окончательная стоимость ремонта
 
     private Boolean isDone;   // статус: готов
     private Boolean isNeedCall;   // статус: связь с клиентом
@@ -75,22 +75,22 @@ public class WorkOrder implements Serializable {
 
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private Product product;
+    private Product product;                    //тип: телек, стиралка краткий
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "manufacturer_id")
-    private Manufacturer manufacturer;
+    private Manufacturer manufacturer;          //марка: производитель
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "receiver_id")
-    private Receiver receiver;
+    private Receiver receiver;                      //приёмщик
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "engineer_id")
-    private Engineer engineer;
+    private Engineer engineer;                                   //мастер
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "status_id")
-    private Status status;
+    private Status status;                                      //принят, выдан, на звонке
 
 }

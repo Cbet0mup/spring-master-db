@@ -17,6 +17,7 @@ public class WorkOrderFactory {
                 .customerPhone(workOrderDTO.getCustomerPhone())
                 .serialNumber(workOrderDTO.getSerialNumber())
                 .price(price)
+                .finalPrice(workOrderDTO.getFinalPrice())
                 .imei(workOrderDTO.getImei())
                 .engineer(engineer)
                 .manufacturer(manufacturer)

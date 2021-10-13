@@ -24,6 +24,7 @@ public class WorkOrderDTO {
     private String look;            //внешний вид
     private String complection;            //комплектация
     private String trouble;            //неисправность
+    private String finalPrice;   /// окончательная стоимость ремонта
     private Boolean isNeedCall;   // звонок нужен
     private Boolean isDone;   //готов
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
