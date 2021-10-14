@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 public class WorkOrderDtoPresent {
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime createdAt;  //дата приёмки
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    private String createdAt;  //дата приёмки
     private LocalDateTime givenOut;   //дата выдачи
     private Integer id;
     private Boolean isNeedCall;            //нужем звлнок

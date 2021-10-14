@@ -5,6 +5,7 @@ import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.store.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class WorkOrderFactory {
@@ -12,7 +13,7 @@ public class WorkOrderFactory {
                                      Product product, Receiver receiver, ServiceOrder serviceOrder, Status status, ModelName modelName,
                                      Price price){
         return WorkOrder.builder()
-                .createdAt(LocalDateTime.now())
+                .createdAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM dd, uuuu")))
                 .customerName(workOrderDTO.getCustomerName())
                 .customerPhone(workOrderDTO.getCustomerPhone())
                 .serialNumber(workOrderDTO.getSerialNumber())
