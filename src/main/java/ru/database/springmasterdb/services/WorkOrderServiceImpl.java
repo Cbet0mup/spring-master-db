@@ -9,6 +9,8 @@ import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
 import ru.database.springmasterdb.factories.WorkOrderFactory;
 import ru.database.springmasterdb.store.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,6 +123,35 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
 
         List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsNeedCall(isNeedCall, isNeedCallSort);
+
+        List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
+        for (WorkOrder workOrder : workOrderListRepo) {
+            workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+        }
+
+        return workOrderDtoPresents;
+    }
+
+    @Override
+    public List<WorkOrderDtoPresent> findAllWorkOrdersCreatedAt() {
+        Sort createdAt = Sort.by(Sort.Direction.ASC, "id");
+
+        String date = String.format(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE), LocalDate.now());
+
+        List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByCreatedAt(date, createdAt);
+
+        List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
+        for (WorkOrder workOrder : workOrderListRepo) {
+            workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+        }
+
+        return workOrderDtoPresents;
+    }
+
+    @Override
+    public List<WorkOrderDtoPresent> findAllByEngineerAndiAndIsAccepted(Integer id, Boolean isAccepted) {
+        Sort createdAt = Sort.by(Sort.Direction.ASC, "id");
+        List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByEngineerAndIsAccepted(id, isAccepted, createdAt);
 
         List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
         for (WorkOrder workOrder : workOrderListRepo) {

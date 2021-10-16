@@ -17,7 +17,7 @@ public class WorkOrderDtoPresent {
     private Boolean isNeedCall;            //нужем звлнок
     private Boolean isDone;              //готов
     private Boolean isDoneIsCalled;     // статус: готов, клиент извещён
-    private Boolean isGivenOut;          // статус: готов, клиент извещён
+    private Boolean isGivenOut;          // статус: выдан
     private String customerName;
     private String customerPhone;
     private String serialNumber;

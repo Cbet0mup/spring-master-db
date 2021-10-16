@@ -28,7 +28,8 @@ public class WorkOrderDTO {
     private Boolean isNeedCall;   // звонок нужен
     private Boolean isDone;   //готов
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
-    private Boolean isGivenOut;   // статус: готов, клиент извещён
+    private Boolean isGivenOut;   // статус: выдан
+    private Boolean isAccepted;   // статус: принят
     private Integer modelId;       //  модель
     private Integer serviceId;     //платный, гарантийный
     private Integer productId;             //тип: телек, стиралка краткий

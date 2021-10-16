@@ -57,8 +57,8 @@ public class WorkOrder implements Serializable {
     private Boolean isNeedCall;   // статус: связь с клиентом
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
     private Boolean isGivenOut;   // статус: готов, клиент извещён
+    private Boolean isAccepted;   // статус: принят и назначен мастер
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime dateOfIssue; //дата выдачи
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)

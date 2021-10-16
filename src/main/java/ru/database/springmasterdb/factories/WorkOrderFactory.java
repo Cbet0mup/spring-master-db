@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.store.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -12,8 +13,9 @@ public class WorkOrderFactory {
     public WorkOrder createWorkOrder(WorkOrderDTO workOrderDTO, Engineer engineer, Manufacturer manufacturer,
                                      Product product, Receiver receiver, ServiceOrder serviceOrder, Status status, ModelName modelName,
                                      Price price){
+LocalDate localDate = LocalDate.now();
         return WorkOrder.builder()
-                .createdAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM dd, uuuu")))
+                .createdAt(String.format(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE), localDate))
                 .customerName(workOrderDTO.getCustomerName())
                 .customerPhone(workOrderDTO.getCustomerPhone())
                 .serialNumber(workOrderDTO.getSerialNumber())
@@ -28,6 +30,7 @@ public class WorkOrderFactory {
                 .status(status)
                 .model(modelName)
                 .isNeedCall(workOrderDTO.getIsNeedCall())
+                .isAccepted(workOrderDTO.getIsAccepted())
                 .isDone(workOrderDTO.getIsDone())
                 .isDoneIsCalled(workOrderDTO.getIsDoneIsCalled())
                 .isGivenOut(workOrderDTO.getIsGivenOut())

@@ -11,7 +11,10 @@ public interface WorkOrderService {
 
     WorkOrderDtoPresent getByNum(Integer id);
 
-    List<WorkOrderDtoPresent> findAllByIsDone(Boolean isDone);
     List<WorkOrderDtoPresent> findAllWorkOrders();
     List<WorkOrderDtoPresent> findAllWorkOrdersIsNeedCall(Boolean isNeedCall);
+    List<WorkOrderDtoPresent> findAllByIsDone(Boolean isDone);
+    List<WorkOrderDtoPresent> findAllWorkOrdersCreatedAt();
+    List<WorkOrderDtoPresent> findAllByEngineerAndiAndIsAccepted(Integer id, Boolean isAccepted);
+
 }
