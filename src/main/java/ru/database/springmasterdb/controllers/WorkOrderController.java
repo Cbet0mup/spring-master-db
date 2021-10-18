@@ -67,7 +67,7 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 
-    @GetMapping("/findworkorder/allNeedRepair/{id}")  //найти все принятые на конкретного матера
+    @GetMapping("/findworkorder/allNeedRepair/{id}")  //найти все принятые на конкретного матера.
     public ResponseEntity<List<WorkOrderDtoPresent>> getAllWorkOrdersIsAccepted(@PathVariable("id") Integer id) {
         List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByEngineerAndiAndIsAccepted(id, true);
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);

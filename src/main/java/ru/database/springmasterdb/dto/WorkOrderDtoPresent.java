@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 public class WorkOrderDtoPresent {
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private String createdAt;  //дата приёмки
-    private LocalDateTime givenOut;   //дата выдачи
-    private Integer id;
-    private Boolean isNeedCall;            //нужем звлнок
-    private Boolean isDone;              //готов
-    private Boolean isDoneIsCalled;     // статус: готов, клиент извещён
-    private Boolean isGivenOut;          // статус: выдан
+    private String givenOut;   //дата выдачи
+    private String id;
+    private String isNeedCall;            //нужем звлнок
+    private String isDone;              //готов
+    private String isDoneIsCalled;     // статус: готов, клиент извещён
+    private String isGivenOut;          // статус: выдан
     private String customerName;
     private String customerPhone;
     private String serialNumber;
