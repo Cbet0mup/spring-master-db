@@ -11,6 +11,7 @@ public class WorkOrderDTOFactory {
                 .id(workOrder.getId())
                 .createdAt(workOrder.getCreatedAt())
                 .givenOut(workOrder.getGivenOut())
+                .dateOfIssue(workOrder.getDateOfIssue())
                 .customerName(workOrder.getCustomerName())
                 .customerPhone(workOrder.getCustomerPhone())
                 .engineerName(workOrder.getEngineer().getEngineerName())
@@ -20,6 +21,7 @@ public class WorkOrderDTOFactory {
                 .price(workOrder.getPrice().getPrice())
                 .priceName(workOrder.getPrice().getPriceName())
                 .finalPrice(workOrder.getFinalPrice())
+                .prepayment(workOrder.getPrepayment())
                 .serialNumber(workOrder.getSerialNumber())
                 .imei(workOrder.getImei())
                 .serviceName(workOrder.getService().getServiceType())
@@ -31,6 +33,8 @@ public class WorkOrderDTOFactory {
                 .complection(workOrder.getComplection())
                 .look(workOrder.getLook())
                 .trouble(workOrder.getTrouble())
+                .troubleDetected(workOrder.getTroubleDetected())
+                .troubleSolving(workOrder.getTroubleSolving())
                 .build();
 
     }

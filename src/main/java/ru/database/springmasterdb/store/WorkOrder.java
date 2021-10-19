@@ -33,14 +33,10 @@ public class WorkOrder implements Serializable {
 
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-DD-yyyy HH:mm")
     private String createdAt;  //дата приёмки
+    private String givenOut;  //дата выдачи клиенту на руки
+    private String dateOfIssue; //дата выдачи инженером
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
-    private LocalDateTime givenOut;  //дата выдачи
-
-    @NotEmpty(message = "Имя не должно быть пустым.")
     private String customerName;
-
-    @NotEmpty(message = "Требуется ввести номер телефона.")
     private String customerPhone;
 
     private String serialNumber;
@@ -48,18 +44,20 @@ public class WorkOrder implements Serializable {
 
     private String look;            //внешний вид
     private String complection;            //комплектация
+
     private String trouble;            //неисправность
+    private String troubleDetected;            //выявленная неисправность
+    private String troubleSolving;            //описание работ
 
     private String prepayment;   /// предоплата
     private String finalPrice;   /// окончательная стоимость ремонта
+    private String additionalPrice;   ///стоимость доп работ и деталей
 
     private Boolean isDone;   // статус: готов
     private Boolean isNeedCall;   // статус: связь с клиентом
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
     private Boolean isGivenOut;   // статус: готов, клиент извещён
     private Boolean isAccepted;   // статус: принят и назначен мастер
-
-    private LocalDateTime dateOfIssue; //дата выдачи
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "model_id")

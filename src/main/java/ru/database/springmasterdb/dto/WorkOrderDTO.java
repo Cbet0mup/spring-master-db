@@ -15,16 +15,27 @@ import java.time.LocalDateTime;
 public class WorkOrderDTO {
 
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime createdAt;  //дата приёмки
-    private LocalDateTime givenOut;   //дата выдачи
+    private String createdAt;  //дата приёмки
+    private String givenOut;   //дата выдачи
+    private String dateOfIssue; //дата выдачи инженером
+
     private String customerName;        //  заказчик
     private String customerPhone;       //
+
     private String serialNumber;        //
     private String imei;                //
     private String look;            //внешний вид
     private String complection;            //комплектация
+
     private String trouble;            //неисправность
+    private String troubleDetected;            //выявленная неисправность
+    private String troubleSolving;            //описание работ
+
     private String finalPrice;   /// окончательная стоимость ремонта
+    private String prepayment;          //предоплата
+    private Integer priceId;           //прайс, тип устройства подробный и цена
+    private String additionalPrice;   ///стоимость доп работ и деталей
+
     private Boolean isNeedCall;   // звонок нужен
     private Boolean isDone;   //готов
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
@@ -37,6 +48,5 @@ public class WorkOrderDTO {
     private Integer receiverId;        //приёмщик
     private Integer engineerId;        //мастер
     private Integer statusId;          //принят, выдан, на звонке
-    private Integer priceId;           //прайс, тип устройства подробный и цена
 
 }

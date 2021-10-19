@@ -18,10 +18,14 @@ LocalDate localDate = LocalDate.now();
                 .createdAt(String.format(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE), localDate))
                 .customerName(workOrderDTO.getCustomerName())
                 .customerPhone(workOrderDTO.getCustomerPhone())
-                .serialNumber(workOrderDTO.getSerialNumber())
+
                 .price(price)
                 .finalPrice(workOrderDTO.getFinalPrice())
+                .prepayment(workOrderDTO.getPrepayment())
+                .additionalPrice(workOrderDTO.getAdditionalPrice())
+
                 .imei(workOrderDTO.getImei())
+                .serialNumber(workOrderDTO.getSerialNumber())
                 .engineer(engineer)
                 .manufacturer(manufacturer)
                 .product(product)
@@ -37,6 +41,8 @@ LocalDate localDate = LocalDate.now();
                 .look(workOrderDTO.getLook())
                 .complection(workOrderDTO.getComplection())
                 .trouble(workOrderDTO.getTrouble())
+                .troubleDetected(workOrderDTO.getTroubleDetected())
+                .troubleSolving(workOrderDTO.getTroubleSolving())
                 .build();
     }
 }
