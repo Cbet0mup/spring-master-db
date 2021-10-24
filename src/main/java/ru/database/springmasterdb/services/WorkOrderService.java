@@ -8,6 +8,7 @@ import java.util.List;
 public interface WorkOrderService {
 
     void createWorkOrder(WorkOrderDTO workOrderDTO);
+    void updateWorkOrders(WorkOrderDTO workOrderDTO, Integer id);
 
     WorkOrderDtoPresent getByNum(Integer id);
 

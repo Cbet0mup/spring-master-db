@@ -27,7 +27,6 @@ public class WorkOrder implements Serializable {
     @Column(updatable = false, nullable = false)
     private Integer id;
 
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-DD-yyyy HH:mm")
     private String createdAt;  //дата приёмки
     private String givenOut;  //дата выдачи клиенту на руки
     private String dateOfIssue; //дата выдачи инженером
@@ -52,7 +51,7 @@ public class WorkOrder implements Serializable {
     private Boolean isDone;   // статус: готов
     private Boolean isNeedCall;   // статус: связь с клиентом
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
-    private Boolean isGivenOut;   // статус: готов, клиент извещён
+    private Boolean isGivenOut;   // статус: выдан
     private Boolean isAccepted;   // статус: принят и назначен мастер
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)

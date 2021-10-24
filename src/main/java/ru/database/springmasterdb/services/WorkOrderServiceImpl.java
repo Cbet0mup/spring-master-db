@@ -85,6 +85,11 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     }
 
     @Override
+    public void updateWorkOrders(WorkOrderDTO workOrderDTO, Integer id) {
+
+    }
+
+    @Override
     public WorkOrderDtoPresent getByNum(Integer id) {
         WorkOrder workOrder = workOrderRepo.getById(id);
         return workOrderDTOFactory.createWorkOrderDTOPresent(workOrder);

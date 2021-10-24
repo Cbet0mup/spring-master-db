@@ -32,9 +32,13 @@ public class WorkOrderController {
     @PostMapping            //новый наряд
     public ResponseEntity<WorkOrderDTO> createWorkOrder(@RequestBody WorkOrderDTO workOrderDTO) {
         workOrderServiceImpl.createWorkOrder(workOrderDTO);
-        log.info("Создана сущность з/н: \n" + workOrderDTO.toString());
         return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
+    }
 
+    @PutMapping("/{id}")            //изменение заказа/наряда
+    public ResponseEntity<WorkOrderDTO> updateWorkOrder(@RequestBody WorkOrderDTO workOrderDTO, @PathVariable("id") Integer id) {
+
+        return new ResponseEntity<>(workOrderDTO, HttpStatus.OK);
     }
 
     @GetMapping("/findworkorder/{id}")  //найти один по номеру
@@ -67,7 +71,7 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 
-    @GetMapping("/findworkorder/allNeedRepair/{id}")  //найти все принятые на конкретного матера.
+    @GetMapping("/findworkorder/allNeedRepair/{id}")  //найти все принятые на конкретного инженера.
     public ResponseEntity<List<WorkOrderDtoPresent>> getAllWorkOrdersIsAccepted(@PathVariable("id") Integer id) {
         List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByEngineerAndiAndIsAccepted(id, true);
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
