@@ -1,10 +1,7 @@
 package ru.database.springmasterdb.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.Accessors;
-
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -14,7 +11,6 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class WorkOrderDTO {
 
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private String createdAt;  //дата приёмки
     private String givenOut;   //дата выдачи
     private String dateOfIssue; //дата выдачи инженером
@@ -27,13 +23,14 @@ public class WorkOrderDTO {
     private String look;            //внешний вид
     private String complection;            //комплектация
 
+    private String chatLog;         //примечания
+
     private String trouble;            //неисправность
     private String troubleDetected;            //выявленная неисправность
     private String troubleSolving;            //описание работ
 
     private String finalPrice;   /// окончательная стоимость ремонта
     private String prepayment;          //предоплата
-    private Integer priceId;           //прайс, тип устройства подробный и цена
     private String additionalPrice;   ///стоимость доп работ и деталей
 
     private Boolean isNeedCall;   // звонок нужен
@@ -41,6 +38,8 @@ public class WorkOrderDTO {
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
     private Boolean isGivenOut;   // статус: выдан
     private Boolean isAccepted;   // статус: принят
+
+    private Integer priceId;           //прайс, тип устройства подробный и цена
     private Integer modelId;       //  модель
     private Integer serviceId;     //платный, гарантийный
     private Integer productId;             //тип: телек, стиралка краткий

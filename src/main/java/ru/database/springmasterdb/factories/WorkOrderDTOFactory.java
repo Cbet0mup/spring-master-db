@@ -35,6 +35,16 @@ public class WorkOrderDTOFactory {
                 .trouble(workOrder.getTrouble())
                 .troubleDetected(workOrder.getTroubleDetected())
                 .troubleSolving(workOrder.getTroubleSolving())
+                .chatLog(workOrder.getChatLog())
+
+                .priceId(workOrder.getPrice().getId())
+                .modelId(workOrder.getModel().getId())
+                .serviceId(workOrder.getService().getId())
+                .productId(workOrder.getProduct().getId())
+                .manufacturerId(workOrder.getManufacturer().getId())
+                .receiverId(workOrder.getReceiver().getId())
+                .engineerId(workOrder.getEngineer().getId())
+                .statusId(workOrder.getStatus().getId())
                 .build();
 
     }

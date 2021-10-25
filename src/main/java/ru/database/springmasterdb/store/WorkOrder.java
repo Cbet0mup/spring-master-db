@@ -37,6 +37,8 @@ public class WorkOrder implements Serializable {
     private String serialNumber;
     private String imei;
 
+    private String chatLog;         //примечания
+
     private String look;            //внешний вид
     private String complection;            //комплектация
 

@@ -21,6 +21,8 @@ public class WorkOrderDtoPresent {
     private String customerName;
     private String customerPhone;
 
+    private String chatLog;         //примечания
+
     private String serialNumber;
     private String imei;
     private String serviceName;         //платный, гарантийный
@@ -41,5 +43,14 @@ public class WorkOrderDtoPresent {
     private String trouble;              //неисправность
     private String troubleDetected;            //выявленная неисправность
     private String troubleSolving;            //описание работ
+
+    private Integer priceId;           //прайс, тип устройства подробный и цена
+    private Integer modelId;       //  модель
+    private Integer serviceId;     //платный, гарантийный
+    private Integer productId;             //тип: телек, стиралка краткий
+    private Integer manufacturerId;        //марка: производитель
+    private Integer receiverId;        //приёмщик
+    private Integer engineerId;        //мастер
+    private Integer statusId;          //принят, выдан, на звонке
 
 }

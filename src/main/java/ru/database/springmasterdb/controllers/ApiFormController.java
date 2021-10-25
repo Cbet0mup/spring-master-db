@@ -20,18 +20,16 @@ public class ApiFormController {
     private final PriceServiceImpl priceService;
     private final ServiceOrderServiceImpl serviceOrderService;
     private final EngineerServiceImpl engineerService;
-    private final NotesServiceImpl notesService;
 
     @Autowired
     public ApiFormController(ProductNameServiceImpl productNameService, ManufacturerServiceImpl manufacturerService,
-                             ModelNameServiceImpl modelNameService, PriceServiceImpl priceService, ServiceOrderServiceImpl serviceOrderService, EngineerServiceImpl engineerService, NotesServiceImpl notesService) {
+                             ModelNameServiceImpl modelNameService, PriceServiceImpl priceService, ServiceOrderServiceImpl serviceOrderService, EngineerServiceImpl engineerService) {
         this.productNameService = productNameService;
         this.manufacturerService = manufacturerService;
         this.modelNameService = modelNameService;
         this.priceService = priceService;
         this.serviceOrderService = serviceOrderService;
         this.engineerService = engineerService;
-        this.notesService = notesService;
     }
 
     // ProductName
@@ -116,9 +114,9 @@ public class ApiFormController {
     }
 
     //NOTES
-    @GetMapping("/apiform/notes/{id}")
-    public ResponseEntity<NotesDTO> getNotes(@PathVariable Integer id) {
-        NotesDTO notesDTO = notesService.getNotes(id);
-        return new ResponseEntity<>(notesDTO, HttpStatus.OK);
-    }
+//    @GetMapping("/apiform/notes/{id}")
+//    public ResponseEntity<NotesDTO> getNotes(@PathVariable Integer id) {
+//        NotesDTO notesDTO = notesService.getNotes(id);
+//        return new ResponseEntity<>(notesDTO, HttpStatus.OK);
+//    }
 }

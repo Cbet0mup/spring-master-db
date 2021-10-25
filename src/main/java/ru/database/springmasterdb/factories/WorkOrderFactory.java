@@ -17,6 +17,7 @@ LocalDate localDate = LocalDate.now();
                 .createdAt(String.format(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE), localDate))
                 .customerName(workOrderDTO.getCustomerName())
                 .customerPhone(workOrderDTO.getCustomerPhone())
+                .chatLog(workOrderDTO.getChatLog())
 
                 .price(price)
                 .finalPrice(workOrderDTO.getFinalPrice())

@@ -157,6 +157,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     public List<WorkOrderDtoPresent> findAllByEngineerAndiAndIsAccepted(Integer id, Boolean isAccepted) {
         Sort createdAt = Sort.by(Sort.Direction.ASC, "id");
         List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByEngineerAndIsAccepted(id, isAccepted, createdAt);
+        System.out.println(workOrderListRepo);
 
         List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
         for (WorkOrder workOrder : workOrderListRepo) {
