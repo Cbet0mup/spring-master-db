@@ -11,6 +11,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class WorkOrderDTO {
 
+    private Integer id;
     private String createdAt;  //дата приёмки
     private String givenOut;   //дата выдачи
     private String dateOfIssue; //дата выдачи инженером
@@ -47,5 +48,6 @@ public class WorkOrderDTO {
     private Integer receiverId;        //приёмщик
     private Integer engineerId;        //мастер
     private Integer statusId;          //принят, выдан, на звонке
+    //30
 
 }

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.database.springmasterdb.dto.ChatLogDTO;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
 import ru.database.springmasterdb.services.WorkOrderServiceImpl;
@@ -35,8 +36,15 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")            //изменение заказа/наряда
-    public ResponseEntity<WorkOrderDTO> updateWorkOrder(@RequestBody WorkOrderDTO workOrderDTO, @PathVariable("id") Integer id) {
+    //обновить ChatLog
+    @PostMapping("/chatlog")          //изменить chatLog
+    public ResponseEntity<ChatLogDTO> updateChatLog(@RequestBody ChatLogDTO chatLogDTO) {
+        workOrderServiceImpl.updateChatLogInWorkOrders(chatLogDTO);
+        return new ResponseEntity<>(chatLogDTO, HttpStatus.OK);
+    }
+
+    @PutMapping           //изменение заказа/наряда
+    public ResponseEntity<WorkOrderDTO> updateWorkOrder(@RequestBody WorkOrderDTO workOrderDTO) {
 
         return new ResponseEntity<>(workOrderDTO, HttpStatus.OK);
     }

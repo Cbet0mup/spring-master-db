@@ -88,4 +88,7 @@ public class WorkOrder implements Serializable {
     @JoinColumn(name = "status_id")
     private Status status;                                      //принят, выдан, на звонке
 
+    public void setChatLog(String chatLog) {
+        this.chatLog += chatLog;
+    }
 }

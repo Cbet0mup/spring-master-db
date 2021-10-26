@@ -3,6 +3,7 @@ package ru.database.springmasterdb.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import ru.database.springmasterdb.dto.ChatLogDTO;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.factories.WorkOrderDTOFactory;
 import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
@@ -85,8 +86,19 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     }
 
     @Override
-    public void updateWorkOrders(WorkOrderDTO workOrderDTO, Integer id) {
+    public void updateWorkOrders(WorkOrderDTO workOrderDTO) {
 
+    }
+
+    @Override
+    public void updateChatLogInWorkOrders(ChatLogDTO chatLogDTO) {
+        try {
+            WorkOrder workOrder = workOrderRepo.getById(chatLogDTO.getId());
+            workOrder.setChatLog(chatLogDTO.getChatLog());
+            workOrderRepo.saveAndFlush(workOrder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
