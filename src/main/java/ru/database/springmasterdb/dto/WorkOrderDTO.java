@@ -26,7 +26,7 @@ public class WorkOrderDTO {
 
     private String chatLog;         //примечания
 
-    private String trouble;            //неисправность
+    private String trouble;            //неисправность со слов клиента
     private String troubleDetected;            //выявленная неисправность
     private String troubleSolving;            //описание работ
 

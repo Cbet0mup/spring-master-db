@@ -36,18 +36,7 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
     }
 
-    //обновить ChatLog
-    @PostMapping("/chatlog")          //изменить chatLog
-    public ResponseEntity<ChatLogDTO> updateChatLog(@RequestBody ChatLogDTO chatLogDTO) {
-        workOrderServiceImpl.updateChatLogInWorkOrders(chatLogDTO);
-        return new ResponseEntity<>(chatLogDTO, HttpStatus.OK);
-    }
 
-    @PutMapping           //изменение заказа/наряда
-    public ResponseEntity<WorkOrderDTO> updateWorkOrder(@RequestBody WorkOrderDTO workOrderDTO) {
-
-        return new ResponseEntity<>(workOrderDTO, HttpStatus.OK);
-    }
 
     @GetMapping("/findworkorder/{id}")  //найти один по номеру
     public ResponseEntity<WorkOrderDtoPresent> getWorkorderById(@PathVariable("id") Integer id) {
@@ -79,9 +68,5 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 
-    @GetMapping("/findworkorder/allNeedRepair/{id}")  //найти все принятые на конкретного инженера.
-    public ResponseEntity<List<WorkOrderDtoPresent>> getAllWorkOrdersIsAccepted(@PathVariable("id") Integer id) {
-        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByEngineerAndiAndIsAccepted(id, true);
-        return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
-    }
+
 }

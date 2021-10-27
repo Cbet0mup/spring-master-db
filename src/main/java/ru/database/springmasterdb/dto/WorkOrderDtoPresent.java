@@ -40,7 +40,7 @@ public class WorkOrderDtoPresent {
 
     private String look;                 //внешний вид
     private String complection;            //комплектация
-    private String trouble;              //неисправность
+    private String trouble;              //неисправность со слов
     private String troubleDetected;            //выявленная неисправность
     private String troubleSolving;            //описание работ
 

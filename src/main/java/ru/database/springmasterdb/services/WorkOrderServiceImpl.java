@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.database.springmasterdb.dto.ChatLogDTO;
+import ru.database.springmasterdb.dto.EngineerSaveWorkOrderDTO;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.factories.WorkOrderDTOFactory;
 import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
@@ -85,9 +86,17 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     }
 
-    @Override
-    public void updateWorkOrders(WorkOrderDTO workOrderDTO) {
-
+    @Override  //изменение заказа/наряда (выявленная неисправность и описание работ)
+    public void updateWorkOrdersEngineer(EngineerSaveWorkOrderDTO workOrderDTO) {
+        try {
+            WorkOrder workOrder = workOrderRepo.getById(workOrderDTO.getId());
+            workOrder
+                    .setTroubleDetected(workOrderDTO.getTroubleDetected())
+                    .setTroubleSolving(workOrderDTO.getTroubleSolving());
+            workOrderRepo.saveAndFlush(workOrder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -103,19 +112,31 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     @Override
     public WorkOrderDtoPresent getByNum(Integer id) {
-        WorkOrder workOrder = workOrderRepo.getById(id);
+        WorkOrder workOrder = null;
+        try {
+            workOrder = workOrderRepo.getById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assert workOrder != null;
         return workOrderDTOFactory.createWorkOrderDTOPresent(workOrder);
     }
 
     @Override
     public List<WorkOrderDtoPresent> findAllWorkOrders() {
-        Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
+        List<WorkOrderDtoPresent> workOrderDtoPresents = null;
 
-        List<WorkOrder> workOrderListRepo = workOrderRepo.findAll(isNeedCallSort);
+        try {
+            Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
 
-        List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
-        for (WorkOrder workOrder : workOrderListRepo) {
-            workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+            List<WorkOrder> workOrderListRepo = workOrderRepo.findAll(isNeedCallSort);
+
+            workOrderDtoPresents = new ArrayList<>();
+            for (WorkOrder workOrder : workOrderListRepo) {
+                workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return workOrderDtoPresents;
@@ -123,13 +144,19 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     @Override
     public List<WorkOrderDtoPresent> findAllByIsDone(Boolean isDone) {
-        Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
+        List<WorkOrderDtoPresent> workOrderDtoPresents = null;
 
-        List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsDone(isDone, isNeedCallSort);
+        try {
+            Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
 
-        List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
-        for (WorkOrder workOrder : workOrderListRepo) {
-            workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+            List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsDone(isDone, isNeedCallSort);
+
+            workOrderDtoPresents = new ArrayList<>();
+            for (WorkOrder workOrder : workOrderListRepo) {
+                workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return workOrderDtoPresents;
@@ -139,11 +166,16 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     public List<WorkOrderDtoPresent> findAllWorkOrdersIsNeedCall(Boolean isNeedCall) {
         Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
 
-        List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsNeedCall(isNeedCall, isNeedCallSort);
+        List<WorkOrderDtoPresent> workOrderDtoPresents = null;
+        try {
+            List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsNeedCall(isNeedCall, isNeedCallSort);
 
-        List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
-        for (WorkOrder workOrder : workOrderListRepo) {
-            workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+            workOrderDtoPresents = new ArrayList<>();
+            for (WorkOrder workOrder : workOrderListRepo) {
+                workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return workOrderDtoPresents;
@@ -153,13 +185,18 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     public List<WorkOrderDtoPresent> findAllWorkOrdersCreatedAt() {
         Sort createdAt = Sort.by(Sort.Direction.ASC, "id");
 
-        String date = String.format(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE), LocalDate.now());
+        List<WorkOrderDtoPresent> workOrderDtoPresents = null;
+        try {
+            String date = String.format(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE), LocalDate.now());
 
-        List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByCreatedAt(date, createdAt);
+            List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByCreatedAt(date, createdAt);
 
-        List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
-        for (WorkOrder workOrder : workOrderListRepo) {
-            workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+            workOrderDtoPresents = new ArrayList<>();
+            for (WorkOrder workOrder : workOrderListRepo) {
+                workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return workOrderDtoPresents;
@@ -168,12 +205,17 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     @Override
     public List<WorkOrderDtoPresent> findAllByEngineerAndiAndIsAccepted(Integer id, Boolean isAccepted) {
         Sort createdAt = Sort.by(Sort.Direction.ASC, "id");
-        List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByEngineerAndIsAccepted(id, isAccepted, createdAt);
-        System.out.println(workOrderListRepo);
+        List<WorkOrderDtoPresent> workOrderDtoPresents = null;
+        try {
+            List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByEngineerAndIsAccepted(id, isAccepted, createdAt);
+            System.out.println(workOrderListRepo);
 
-        List<WorkOrderDtoPresent> workOrderDtoPresents = new ArrayList<>();
-        for (WorkOrder workOrder : workOrderListRepo) {
-            workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+            workOrderDtoPresents = new ArrayList<>();
+            for (WorkOrder workOrder : workOrderListRepo) {
+                workOrderDtoPresents.add(workOrderDTOFactory.createWorkOrderDTOPresent(workOrder));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return workOrderDtoPresents;
