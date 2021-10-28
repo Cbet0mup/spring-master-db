@@ -14,7 +14,7 @@ public class WorkOrderFactory {
                                      Price price){
 LocalDate localDate = LocalDate.now();
         return WorkOrder.builder()
-                .createdAt(String.format(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE), localDate))
+                .createdAt(String.format(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), localDate)) //.ISO_LOCAL_DATE
                 .customerName(workOrderDTO.getCustomerName())
                 .customerPhone(workOrderDTO.getCustomerPhone())
                 .chatLog(workOrderDTO.getChatLog())
