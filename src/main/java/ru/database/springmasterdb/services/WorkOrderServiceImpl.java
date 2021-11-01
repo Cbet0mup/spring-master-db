@@ -3,11 +3,8 @@ package ru.database.springmasterdb.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ru.database.springmasterdb.dto.ChatLogDTO;
-import ru.database.springmasterdb.dto.EngineerSaveWorkOrderDTO;
-import ru.database.springmasterdb.dto.WorkOrderDTO;
+import ru.database.springmasterdb.dto.*;
 import ru.database.springmasterdb.factories.WorkOrderDTOFactory;
-import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
 import ru.database.springmasterdb.factories.WorkOrderFactory;
 import ru.database.springmasterdb.store.*;
 
@@ -104,6 +101,17 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         try {
             WorkOrder workOrder = workOrderRepo.getById(chatLogDTO.getId());
             workOrder.setChatLog(chatLogDTO.getChatLog());
+            workOrderRepo.saveAndFlush(workOrder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateIsNeedCall(IsNeedCallDTO isNeedCallDTO) {
+        try {
+            WorkOrder workOrder = workOrderRepo.getById(isNeedCallDTO.getId());
+            workOrder.setIsNeedCall(isNeedCallDTO.getIsNeedCall());
             workOrderRepo.saveAndFlush(workOrder);
         } catch (Exception e) {
             e.printStackTrace();

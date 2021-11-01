@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.database.springmasterdb.dto.ChatLogDTO;
+import ru.database.springmasterdb.dto.IsNeedCallDTO;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
 import ru.database.springmasterdb.services.WorkOrderServiceImpl;
@@ -35,8 +36,6 @@ public class WorkOrderController {
         workOrderServiceImpl.createWorkOrder(workOrderDTO);
         return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
     }
-
-
 
     @GetMapping("/findworkorder/{id}")  //найти один по номеру
     public ResponseEntity<WorkOrderDtoPresent> getWorkorderById(@PathVariable("id") Integer id) {
@@ -67,6 +66,8 @@ public class WorkOrderController {
         List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllWorkOrdersCreatedAt();
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
+
+
 
 
 }

@@ -1,10 +1,8 @@
 package ru.database.springmasterdb.services;
 
 
-import ru.database.springmasterdb.dto.ChatLogDTO;
-import ru.database.springmasterdb.dto.EngineerSaveWorkOrderDTO;
-import ru.database.springmasterdb.dto.WorkOrderDTO;
-import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
+import ru.database.springmasterdb.dto.*;
+
 import java.util.List;
 
 public interface WorkOrderService {
@@ -12,6 +10,7 @@ public interface WorkOrderService {
     void createWorkOrder(WorkOrderDTO workOrderDTO);
     void updateWorkOrdersEngineer(EngineerSaveWorkOrderDTO workOrderDTO);
     void updateChatLogInWorkOrders(ChatLogDTO chatLogDTO);
+    void updateIsNeedCall(IsNeedCallDTO isNeedCallDTO);
 
     WorkOrderDtoPresent getByNum(Integer id);
 

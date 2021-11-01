@@ -4,10 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.database.springmasterdb.dto.ChatLogDTO;
-import ru.database.springmasterdb.dto.EngineerSaveWorkOrderDTO;
-import ru.database.springmasterdb.dto.WorkOrderDTO;
-import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
+import ru.database.springmasterdb.dto.*;
 import ru.database.springmasterdb.services.WorkOrderServiceImpl;
 
 import java.util.List;
@@ -39,5 +36,11 @@ public class EngineerController {
     public ResponseEntity<List<WorkOrderDtoPresent>> getAllWorkOrdersIsAccepted(@PathVariable("id") Integer id) {
         List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByEngineerAndiAndIsAccepted(id, true);
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
+    }
+
+    @PostMapping("/needCall")            //связь с клиентом статус
+    public ResponseEntity<IsNeedCallDTO> createWorkOrder(@RequestBody IsNeedCallDTO isNeedCallDTO) {
+        workOrderServiceImpl.updateIsNeedCall(isNeedCallDTO);
+        return new ResponseEntity<>(isNeedCallDTO, HttpStatus.CREATED);
     }
 }
