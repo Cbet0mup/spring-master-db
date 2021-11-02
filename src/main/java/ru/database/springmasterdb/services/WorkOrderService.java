@@ -11,6 +11,7 @@ public interface WorkOrderService {
     void updateWorkOrdersEngineer(EngineerSaveWorkOrderDTO workOrderDTO);
     void updateChatLogInWorkOrders(ChatLogDTO chatLogDTO);
     void updateIsNeedCall(IsNeedCallDTO isNeedCallDTO);
+    void updateIsDone(IsDoneDTO isDoneDTO);
 
     WorkOrderDtoPresent getByNum(Integer id);
 
@@ -18,6 +19,6 @@ public interface WorkOrderService {
     List<WorkOrderDtoPresent> findAllWorkOrdersIsNeedCall(Boolean isNeedCall);
     List<WorkOrderDtoPresent> findAllByIsDone(Boolean isDone);
     List<WorkOrderDtoPresent> findAllWorkOrdersCreatedAt();
-    List<WorkOrderDtoPresent> findAllByEngineerAndiAndIsAccepted(Integer id, Boolean isAccepted);
+    List<WorkOrderDtoPresent> findAllByEngineerAndiAndIsAccepted(Integer id, Boolean isAccepted, Boolean isDone);
 
 }

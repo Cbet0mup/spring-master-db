@@ -96,7 +96,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         }
     }
 
-    @Override
+    @Override           //примечания
     public void updateChatLogInWorkOrders(ChatLogDTO chatLogDTO) {
         try {
             WorkOrder workOrder = workOrderRepo.getById(chatLogDTO.getId());
@@ -107,11 +107,22 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         }
     }
 
-    @Override
+    @Override       //отправляем заказ на связь с клиентьом
     public void updateIsNeedCall(IsNeedCallDTO isNeedCallDTO) {
         try {
             WorkOrder workOrder = workOrderRepo.getById(isNeedCallDTO.getId());
             workOrder.setIsNeedCall(isNeedCallDTO.getIsNeedCall());
+            workOrderRepo.saveAndFlush(workOrder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override       //оперируем выдачей заказа инженером и возвратом его обратно
+    public void updateIsDone(IsDoneDTO isDoneDTO) {
+        try {
+            WorkOrder workOrder = workOrderRepo.getById(isDoneDTO.getId());
+            workOrder.setIsDone(isDoneDTO.getIsDone());
             workOrderRepo.saveAndFlush(workOrder);
         } catch (Exception e) {
             e.printStackTrace();
@@ -211,11 +222,11 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     }
 
     @Override
-    public List<WorkOrderDtoPresent> findAllByEngineerAndiAndIsAccepted(Integer id, Boolean isAccepted) {
+    public List<WorkOrderDtoPresent> findAllByEngineerAndiAndIsAccepted(Integer id, Boolean isAccepted, Boolean isDone) {
         Sort createdAt = Sort.by(Sort.Direction.ASC, "id");
         List<WorkOrderDtoPresent> workOrderDtoPresents = null;
         try {
-            List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByEngineerAndIsAccepted(id, isAccepted, createdAt);
+            List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByEngineerAndIsAcceptedAnAndIsDone(id, isAccepted, isDone, createdAt);
             System.out.println(workOrderListRepo);
 
             workOrderDtoPresents = new ArrayList<>();

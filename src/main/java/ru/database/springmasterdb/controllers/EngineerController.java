@@ -34,7 +34,7 @@ public class EngineerController {
 
     @GetMapping("/findworkorder/allNeedRepair/{id}")  //найти все принятые на конкретного инженера.
     public ResponseEntity<List<WorkOrderDtoPresent>> getAllWorkOrdersIsAccepted(@PathVariable("id") Integer id) {
-        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByEngineerAndiAndIsAccepted(id, true);
+        List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllByEngineerAndiAndIsAccepted(id, true, false);
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
 
@@ -42,5 +42,11 @@ public class EngineerController {
     public ResponseEntity<IsNeedCallDTO> createWorkOrder(@RequestBody IsNeedCallDTO isNeedCallDTO) {
         workOrderServiceImpl.updateIsNeedCall(isNeedCallDTO);
         return new ResponseEntity<>(isNeedCallDTO, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/isDone")            //статус наряда isDone готов/true - в работе/false мастером
+    public ResponseEntity<IsDoneDTO> createWorkOrder(@RequestBody IsDoneDTO isDoneDTO) {
+        workOrderServiceImpl.updateIsDone(isDoneDTO);
+        return new ResponseEntity<>(isDoneDTO, HttpStatus.CREATED);
     }
 }
