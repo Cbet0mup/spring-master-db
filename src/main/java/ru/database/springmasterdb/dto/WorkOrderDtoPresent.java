@@ -17,6 +17,7 @@ public class WorkOrderDtoPresent {
     private Boolean isDone;              //готов
     private Boolean isDoneIsCalled;     // статус: готов, клиент извещён
     private Boolean isGivenOut;          // статус: выдан
+    private Boolean isAccepted;   // статус: принят
 
     private String customerName;
     private String customerPhone;
