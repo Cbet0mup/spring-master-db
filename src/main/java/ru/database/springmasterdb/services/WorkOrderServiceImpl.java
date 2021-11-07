@@ -141,7 +141,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         return workOrderDTOFactory.createWorkOrderDTOPresent(workOrder);
     }
 
-    @Override
+    @Override                       //все
     public List<WorkOrderDtoPresent> findAllWorkOrders() {
         List<WorkOrderDtoPresent> workOrderDtoPresents = null;
 
@@ -161,7 +161,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         return workOrderDtoPresents;
     }
 
-    @Override
+    @Override           //все готовые
     public List<WorkOrderDtoPresent> findAllByIsDone(Boolean isDone) {
         List<WorkOrderDtoPresent> workOrderDtoPresents = null;
 
@@ -181,7 +181,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         return workOrderDtoPresents;
     }
 
-    @Override
+    @Override                   // все требующие созвона с клиентом
     public List<WorkOrderDtoPresent> findAllWorkOrdersIsNeedCall(Boolean isNeedCall) {
         Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
 
@@ -200,13 +200,14 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         return workOrderDtoPresents;
     }
 
-    @Override
+    @Override               // все с текущей датой
     public List<WorkOrderDtoPresent> findAllWorkOrdersCreatedAt() {
         Sort createdAt = Sort.by(Sort.Direction.ASC, "id");
+        LocalDate localDate = LocalDate.now();
 
         List<WorkOrderDtoPresent> workOrderDtoPresents = null;
         try {
-            String date = String.format(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE), LocalDate.now());
+            String date = String.format(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), localDate);
 
             List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByCreatedAt(date, createdAt);
 
