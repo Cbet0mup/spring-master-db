@@ -83,6 +83,11 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     }
 
+    @Override           //изменение заказа/наряда
+    public void updateWorkOrder(WorkOrderDTO workOrderDTO) {
+
+    }
+
     @Override  //изменение заказа/наряда (выявленная неисправность и описание работ)
     public void updateWorkOrdersEngineer(EngineerSaveWorkOrderDTO workOrderDTO) {
         try {

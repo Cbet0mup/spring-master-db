@@ -35,6 +35,12 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
     }
 
+    @PostMapping            //обновление данных
+    public ResponseEntity<WorkOrderDTO> updateWorkOrder(@RequestBody WorkOrderDTO workOrderDTO) {
+        workOrderServiceImpl.createWorkOrder(workOrderDTO);
+        return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
+    }
+
     @GetMapping("/findworkorder/{id}")  //найти один по номеру
     public ResponseEntity<WorkOrderDtoPresent> getWorkorderById(@PathVariable("id") Integer id) {
         WorkOrderDtoPresent workOrderDTOpr = workOrderServiceImpl.getByNum(id);

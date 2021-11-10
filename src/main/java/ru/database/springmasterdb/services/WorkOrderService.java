@@ -8,6 +8,7 @@ import java.util.List;
 public interface WorkOrderService {
 
     void createWorkOrder(WorkOrderDTO workOrderDTO);
+    void updateWorkOrder(WorkOrderDTO workOrderDTO);
     void updateWorkOrdersEngineer(EngineerSaveWorkOrderDTO workOrderDTO);
     void updateChatLogInWorkOrders(ChatLogDTO chatLogDTO);
     void updateIsNeedCall(IsNeedCallDTO isNeedCallDTO);
