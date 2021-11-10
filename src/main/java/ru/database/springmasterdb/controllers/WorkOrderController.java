@@ -35,10 +35,10 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
     }
 
-    @PostMapping            //обновление данных
+    @PostMapping("/update")       //обновление данных
     public ResponseEntity<WorkOrderDTO> updateWorkOrder(@RequestBody WorkOrderDTO workOrderDTO) {
-        workOrderServiceImpl.createWorkOrder(workOrderDTO);
-        return new ResponseEntity<>(workOrderDTO, HttpStatus.CREATED);
+        workOrderServiceImpl.updateWorkOrder(workOrderDTO);
+        return new ResponseEntity<>(workOrderDTO, HttpStatus.OK);
     }
 
     @GetMapping("/findworkorder/{id}")  //найти один по номеру

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.database.springmasterdb.dto.*;
 import ru.database.springmasterdb.factories.WorkOrderDTOFactory;
 import ru.database.springmasterdb.factories.WorkOrderFactory;
+import ru.database.springmasterdb.factories.WorkOrdersUpdateFactory;
 import ru.database.springmasterdb.store.*;
 
 import java.time.LocalDate;
@@ -26,12 +27,14 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     private final ModelRepo modelRepo;
     private final WorkOrderDTOFactory workOrderDTOFactory;
     private final WorkOrderFactory workOrderFactory;
+    private final WorkOrdersUpdateFactory workOrdersUpdateFactory;
     private final PriceRepo priceRepo;
+
 
     @Autowired
     public WorkOrderServiceImpl(WorkOrderRepo workOrderRepo, EngineerRepo engineerRepo, ManufacturerRepo manufacturerRepo,
                                 ProductRepo productRepo, ReceiverRepo receiverRepo, ServiceOrderRepo serviceOrderRepo, PriceRepo priceRepo,
-                                StatusRepo statusRepo, WorkOrderDTOFactory workOrderDTOFactory, WorkOrderFactory workOrderFactory, ModelRepo modelRepo) {
+                                StatusRepo statusRepo, WorkOrderDTOFactory workOrderDTOFactory, WorkOrderFactory workOrderFactory, ModelRepo modelRepo, WorkOrdersUpdateFactory workOrdersUpdateFactory) {
         this.workOrderRepo = workOrderRepo;
         this.engineerRepo = engineerRepo;
         this.manufacturerRepo = manufacturerRepo;
@@ -43,6 +46,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         this.workOrderFactory = workOrderFactory;
         this.modelRepo = modelRepo;
         this.priceRepo = priceRepo;
+        this.workOrdersUpdateFactory = workOrdersUpdateFactory;
     }
 
     @Override
@@ -85,6 +89,40 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     @Override           //изменение заказа/наряда
     public void updateWorkOrder(WorkOrderDTO workOrderDTO) {
+        try {
+
+
+            Engineer engineer = engineerRepo
+                    .getById(workOrderDTO.getEngineerId());
+
+            Manufacturer manufacturer = manufacturerRepo
+                    .getById(workOrderDTO.getManufacturerId());
+
+            Product product = productRepo
+                    .getById(workOrderDTO.getProductId());
+
+            Receiver receiver = receiverRepo
+                    .getById(workOrderDTO.getReceiverId());
+
+            ServiceOrder serviceOrder = serviceOrderRepo
+                    .getById(workOrderDTO.getServiceId());
+
+            Status status = statusRepo
+                    .getById(workOrderDTO.getStatusId());
+
+            ModelName modelName = modelRepo
+                    .getById(workOrderDTO.getModelId());
+            Price price = priceRepo
+                    .getById(workOrderDTO.getPriceId());
+
+            WorkOrder workOrder = workOrdersUpdateFactory.updateWorkOrder(workOrderDTO, engineer, manufacturer,
+                    product, receiver, serviceOrder, status, modelName, price);
+
+            workOrderRepo.saveAndFlush(workOrder);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
