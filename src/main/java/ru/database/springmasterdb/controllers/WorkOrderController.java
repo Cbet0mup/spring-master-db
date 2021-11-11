@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping(path = "/workorder", produces = MediaType.APPLICATION_JSON_VALUE)
 public class WorkOrderController {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    //private final Logger log = LoggerFactory.getLogger(getClass());
 
 
     private final WorkOrderServiceImpl workOrderServiceImpl;
@@ -70,8 +70,6 @@ public class WorkOrderController {
         List<WorkOrderDtoPresent> workOrderDTOpr = workOrderServiceImpl.findAllWorkOrdersCreatedAt();
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);
     }
-
-
 
 
 }
