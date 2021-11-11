@@ -38,6 +38,7 @@ LocalDate localDate = LocalDate.now();
                 .isDone(workOrderDTO.getIsDone())
                 .isDoneIsCalled(workOrderDTO.getIsDoneIsCalled())
                 .isGivenOut(workOrderDTO.getIsGivenOut())
+                .isWaitingForASpareParts(workOrderDTO.getIsWaitingForASpareParts())
                 .look(workOrderDTO.getLook())
                 .complection(workOrderDTO.getComplection())
                 .trouble(workOrderDTO.getTrouble())

@@ -39,6 +39,7 @@ public class WorkOrderDTO {
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
     private Boolean isGivenOut;   // статус: выдан
     private Boolean isAccepted;   // статус: принят
+    private Boolean isWaitingForASpareParts;   // статус: ожидает деталь
 
     private Integer priceId;           //прайс, тип устройства подробный и цена
     private Integer modelId;       //  модель

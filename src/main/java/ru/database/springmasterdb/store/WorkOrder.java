@@ -53,6 +53,7 @@ public class WorkOrder implements Serializable {
     private Boolean isDone;   // статус: готов
     private Boolean isNeedCall;   // статус: связь с клиентом
     private Boolean isDoneIsCalled;   // статус: готов, клиент извещён
+    private Boolean isWaitingForASpareParts;   // статус: ожидает деталь
     private Boolean isGivenOut;   // статус: выдан
     private Boolean isAccepted;   // статус: принят и назначен мастер
 

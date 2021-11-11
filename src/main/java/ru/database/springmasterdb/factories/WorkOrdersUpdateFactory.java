@@ -45,6 +45,7 @@ public class WorkOrdersUpdateFactory {
                 .setIsDoneIsCalled(workOrderDTO.getIsDoneIsCalled())
                 .setIsGivenOut(workOrderDTO.getIsGivenOut())
                 .setIsAccepted(workOrderDTO.getIsAccepted())
+                .setIsWaitingForASpareParts(workOrderDTO.getIsWaitingForASpareParts())
                 .setEngineer(engineer)
                 .setManufacturer(manufacturer)
                 .setProduct(product)

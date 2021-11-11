@@ -31,6 +31,7 @@ public class WorkOrderDTOFactory {
                 .isGivenOut(workOrder.getIsGivenOut())
                 .isNeedCall(workOrder.getIsNeedCall())
                 .isAccepted(workOrder.getIsAccepted())
+                .isWaitingForASpareParts(workOrder.getIsWaitingForASpareParts())
                 .complection(workOrder.getComplection())
                 .look(workOrder.getLook())
                 .trouble(workOrder.getTrouble())
