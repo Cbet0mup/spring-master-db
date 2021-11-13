@@ -173,6 +173,17 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     }
 
     @Override
+    public void updateIsWaitingParts(IsWaitingSparePartsDTO isWaitingSparePartsDTO) {
+        try {
+            WorkOrder workOrder = workOrderRepo.getById(isWaitingSparePartsDTO.getId());
+            workOrder.setIsWaitingForASpareParts(isWaitingSparePartsDTO.getIsWaitingForASpareParts());
+            workOrderRepo.saveAndFlush(workOrder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public WorkOrderDtoPresent getByNum(Integer id) {
         WorkOrder workOrder = null;
         try {
