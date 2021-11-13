@@ -14,6 +14,7 @@ public interface WorkOrderService {
     void updateIsNeedCall(IsNeedCallDTO isNeedCallDTO);
     void updateIsDone(IsDoneDTO isDoneDTO);
     void updateIsWaitingParts(IsWaitingSparePartsDTO isWaitingSparePartsDTO);
+    void updateIsGivenOut(GivenOutDTO givenOutDTO);
 
     WorkOrderDtoPresent getByNum(Integer id);
 

@@ -1,12 +1,11 @@
 package ru.database.springmasterdb.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.database.springmasterdb.dto.GivenOutDTO;
 import ru.database.springmasterdb.dto.WorkOrderDTO;
 import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
 import ru.database.springmasterdb.services.WorkOrderServiceImpl;
@@ -39,6 +38,12 @@ public class WorkOrderController {
     public ResponseEntity<WorkOrderDTO> updateWorkOrder(@RequestBody WorkOrderDTO workOrderDTO) {
         workOrderServiceImpl.updateWorkOrder(workOrderDTO);
         return new ResponseEntity<>(workOrderDTO, HttpStatus.OK);
+    }
+
+    @PostMapping("/givenout")       //выдача клиенту
+    public ResponseEntity<GivenOutDTO> updateGivenOut(@RequestBody GivenOutDTO givenOutDTO) {
+        workOrderServiceImpl.updateIsGivenOut(givenOutDTO);
+        return new ResponseEntity<>(givenOutDTO, HttpStatus.OK);
     }
 
     @GetMapping("/findworkorder/{id}")  //найти один по номеру

@@ -163,9 +163,27 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     @Override       //оперируем выдачей заказа инженером и возвратом его обратно
     public void updateIsDone(IsDoneDTO isDoneDTO) {
+
         try {
             WorkOrder workOrder = workOrderRepo.getById(isDoneDTO.getId());
-            workOrder.setIsDone(isDoneDTO.getIsDone());
+            workOrder
+                    .setIsDone(isDoneDTO.getIsDone())
+                    .setIsNeedCall(false);
+            if (isDoneDTO.getIsDone()){         //если выдан то ставим дату
+                LocalDate localDate = LocalDate.now();
+                workOrder.setDateOfIssue(String.format(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), localDate))
+                        .setIsAccepted(false)
+                        .setIsNeedCall(false);
+            }   else {
+                workOrder.setDateOfIssue("");   //если возврат то убираем дату
+            }
+            if (workOrder.getIsGivenOut()){
+                workOrder.setIsGivenOut(false)         //если был выдан то возврат
+                        .setIsDone(false)
+                        .setIsAccepted(true);
+
+            }
+
             workOrderRepo.saveAndFlush(workOrder);
         } catch (Exception e) {
             e.printStackTrace();
@@ -177,6 +195,24 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         try {
             WorkOrder workOrder = workOrderRepo.getById(isWaitingSparePartsDTO.getId());
             workOrder.setIsWaitingForASpareParts(isWaitingSparePartsDTO.getIsWaitingForASpareParts());
+            workOrderRepo.saveAndFlush(workOrder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateIsGivenOut(GivenOutDTO givenOutDTO) {
+        LocalDate localDate = LocalDate.now();
+        try {
+            WorkOrder workOrder = workOrderRepo.getById(givenOutDTO.getId());
+            workOrder
+                    .setIsGivenOut(true)
+                    .setIsDone(false)
+                    .setIsAccepted(false)
+                    .setIsDone(false)
+                    .setGivenOut(String.format(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), localDate));
+
             workOrderRepo.saveAndFlush(workOrder);
         } catch (Exception e) {
             e.printStackTrace();
@@ -222,7 +258,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         try {
             Sort isNeedCallSort = Sort.by(Sort.Direction.ASC, "id");
 
-            List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsDone(isDone, isNeedCallSort);
+            List<WorkOrder> workOrderListRepo = workOrderRepo.findAllByIsDoneAndIsDoneIsCalled(isDone, true, isNeedCallSort);
 
             workOrderDtoPresents = new ArrayList<>();
             for (WorkOrder workOrder : workOrderListRepo) {

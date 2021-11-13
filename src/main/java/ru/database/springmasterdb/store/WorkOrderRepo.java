@@ -9,8 +9,8 @@ import java.util.List;
 
 @Repository
 public interface WorkOrderRepo extends JpaRepository<WorkOrder, Integer> {
-
-    List<WorkOrder> findAllByIsDone(Boolean isDone, Sort isNeedCallSort);
+    @Query("FROM WorkOrder w where w.isDone = ?1 or w.isDoneIsCalled = ?2")
+    List<WorkOrder> findAllByIsDoneAndIsDoneIsCalled(Boolean isDone, Boolean isDoneIsCalled, Sort isNeedCallSort);
 
     List<WorkOrder> findAllByIsNeedCall(Boolean isNeedCall, Sort isNeedCallSort);
 
