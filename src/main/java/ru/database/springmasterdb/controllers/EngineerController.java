@@ -51,6 +51,12 @@ public class EngineerController {
         return new ResponseEntity<>(isDoneDTO, HttpStatus.CREATED);
     }
 
+    @PostMapping("/isDoneIsCalled")            //статус наряда: готов - клиент извещён
+    public ResponseEntity<IsDoneIsCalledDTO> createWorkOrder(@RequestBody IsDoneIsCalledDTO isDoneDTO) {
+        workOrderServiceImpl.updateIsDoneIsCalled(isDoneDTO);
+        return new ResponseEntity<>(isDoneDTO, HttpStatus.CREATED);
+    }
+
     @PostMapping("/isWaitingSpareParts")            //статус наряда isDone готов/true - в работе/false мастером
     public ResponseEntity<IsWaitingSparePartsDTO> createWorkOrder(@RequestBody IsWaitingSparePartsDTO isWaitingSparePartsDTO) {
         workOrderServiceImpl.updateIsWaitingParts(isWaitingSparePartsDTO);

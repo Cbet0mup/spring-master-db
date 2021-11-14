@@ -13,6 +13,7 @@ public interface WorkOrderService {
     void updateChatLogInWorkOrders(ChatLogDTO chatLogDTO);
     void updateIsNeedCall(IsNeedCallDTO isNeedCallDTO);
     void updateIsDone(IsDoneDTO isDoneDTO);
+    void updateIsDoneIsCalled(IsDoneIsCalledDTO isDoneIsCalledDTO);
     void updateIsWaitingParts(IsWaitingSparePartsDTO isWaitingSparePartsDTO);
     void updateIsGivenOut(GivenOutDTO givenOutDTO);
 

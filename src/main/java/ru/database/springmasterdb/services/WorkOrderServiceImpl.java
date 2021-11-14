@@ -176,6 +176,8 @@ public class WorkOrderServiceImpl implements WorkOrderService {
                         .setIsNeedCall(false);
             }   else {
                 workOrder.setDateOfIssue("");   //если возврат то убираем дату
+                workOrder.setIsDoneIsCalled(false);     //если возврат из обзвоненных то снимаем этот флаг
+                workOrder.setIsAccepted(true);      //возвращаем инженеру
             }
             if (workOrder.getIsGivenOut()){
                 workOrder.setIsGivenOut(false)         //если был выдан то возврат
@@ -190,7 +192,20 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         }
     }
 
-    @Override
+    @Override           /// статус: готов - клиент извещён
+    public void updateIsDoneIsCalled(IsDoneIsCalledDTO isDoneIsCalledDTO) {
+        try {
+            WorkOrder workOrder = workOrderRepo.getById(isDoneIsCalledDTO.getId());
+            workOrder
+                    .setIsDoneIsCalled(true)
+                    .setIsDone(false);
+            workOrderRepo.saveAndFlush(workOrder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override                                                                           //ожидает деталь
     public void updateIsWaitingParts(IsWaitingSparePartsDTO isWaitingSparePartsDTO) {
         try {
             WorkOrder workOrder = workOrderRepo.getById(isWaitingSparePartsDTO.getId());
@@ -201,16 +216,18 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         }
     }
 
-    @Override
+    @Override                                                   //выдаём клиенту
     public void updateIsGivenOut(GivenOutDTO givenOutDTO) {
         LocalDate localDate = LocalDate.now();
         try {
             WorkOrder workOrder = workOrderRepo.getById(givenOutDTO.getId());
-            workOrder
+            workOrder                                                           //обнуляем все статусы и выставляем дату выдачи клиенту на руки
                     .setIsGivenOut(true)
                     .setIsDone(false)
                     .setIsAccepted(false)
+                    .setIsDoneIsCalled(false)
                     .setIsDone(false)
+                    .setIsWaitingForASpareParts(false)
                     .setGivenOut(String.format(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), localDate));
 
             workOrderRepo.saveAndFlush(workOrder);
