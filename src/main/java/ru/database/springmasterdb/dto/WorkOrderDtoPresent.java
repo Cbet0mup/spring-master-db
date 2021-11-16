@@ -26,7 +26,7 @@ public class WorkOrderDtoPresent {
     private String chatLog;         //примечания
 
     private String serialNumber;
-    private String imei;
+    private String imei;                 //имей
     private String serviceName;         //платный, гарантийный
     private String productName;         //тип: телек, стиралка
     private String manufacturerName;        //производитель
