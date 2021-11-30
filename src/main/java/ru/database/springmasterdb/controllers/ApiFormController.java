@@ -11,7 +11,7 @@ import ru.database.springmasterdb.services.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/workorder", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/workorder", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ApiFormController {
 
     private final ProductNameServiceImpl productNameService;

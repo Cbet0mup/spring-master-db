@@ -10,7 +10,7 @@ import ru.database.springmasterdb.services.WorkOrderServiceImpl;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/workorder", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/workorder", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EngineerController {
 
     private final WorkOrderServiceImpl workOrderServiceImpl;
