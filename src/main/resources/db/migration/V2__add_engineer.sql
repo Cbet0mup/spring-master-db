@@ -1,0 +1,1 @@
+insert into engineer (engineer_name, id) values ('Инженер_№1', '1');

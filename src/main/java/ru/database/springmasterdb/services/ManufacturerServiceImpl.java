@@ -32,7 +32,7 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
     @Override
     public void createManufacturer(ManufacturerDTO manufacturerDTO) {
-        Manufacturer manufacturer = Manufacturer.builder().manufacturerName(manufacturerDTO.getManufacturer()).build();
+        Manufacturer manufacturer = Manufacturer.builder().manufacturerName(manufacturerDTO.getManufacturer().trim()).build();
         manufacturerRepo.saveAndFlush(manufacturer);
     }
 }

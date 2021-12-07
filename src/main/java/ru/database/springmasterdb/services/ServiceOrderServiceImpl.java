@@ -33,7 +33,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService{
 
     @Override
     public void createServiceOrder(ServiceOrderDTO serviceOrderDTO) {
-            ServiceOrder serviceOrder = ServiceOrder.builder().serviceType(serviceOrderDTO.getServiceType()).build();
+            ServiceOrder serviceOrder = ServiceOrder.builder().serviceType(serviceOrderDTO.getServiceType().trim()).build();
             serviceOrderRepo.saveAndFlush(serviceOrder);
     }
 }

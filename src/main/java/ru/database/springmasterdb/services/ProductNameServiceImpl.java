@@ -35,7 +35,7 @@ public class ProductNameServiceImpl implements ProductNameService{
 
     @Override
     public void createProductName(ProductNameDTO productNameDTO) {
-        Product product = Product.builder().productName(productNameDTO.getProductName()).build();
+        Product product = Product.builder().productName(productNameDTO.getProductName().trim()).build();
         productRepo.saveAndFlush(product);
     }
 }

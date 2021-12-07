@@ -33,8 +33,8 @@ public class PriceServiceImpl implements PriceService{
     @Override
     public void createPrice(PriceDTO priceDTO) {
         Price price = Price.builder()
-                .priceName(priceDTO.getPriceName())
-                .price(priceDTO.getPrice())
+                .priceName(priceDTO.getPriceName().trim())
+                .price(priceDTO.getPrice().trim())
                 .productId(priceDTO.getProductId())
                 .build();
         priceRepo.saveAndFlush(price);

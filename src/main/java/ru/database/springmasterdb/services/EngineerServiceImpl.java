@@ -32,7 +32,7 @@ public class EngineerServiceImpl implements EngineerService{
 
     @Override
     public void createNewEngineer(EngineerDTO engineerDTO) {
-        Engineer engineer = Engineer.builder().engineerName(engineerDTO.getEngineerName()).build();
+        Engineer engineer = Engineer.builder().engineerName(engineerDTO.getEngineerName().trim()).build();
         engineerRepo.saveAndFlush(engineer);
     }
 }

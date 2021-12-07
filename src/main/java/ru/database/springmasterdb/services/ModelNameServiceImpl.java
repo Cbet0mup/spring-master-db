@@ -43,7 +43,7 @@ public class ModelNameServiceImpl implements ModelNameService{
     @Override
     public void createModelName(ModelNameDTO modelNameDTO) {
         ModelName modelName = ModelName.builder()
-                .modelName(modelNameDTO.getModelName())
+                .modelName(modelNameDTO.getModelName().trim())
                 .manufacturerId(modelNameDTO.getManufacturerId())
                 .build();
         modelRepo.saveAndFlush(modelName);
