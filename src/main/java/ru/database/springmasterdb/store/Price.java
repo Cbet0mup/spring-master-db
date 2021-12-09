@@ -19,7 +19,7 @@ import java.io.Serializable;
 public class Price implements Serializable {              //прайс
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private String priceName;       //тип изделия подробный

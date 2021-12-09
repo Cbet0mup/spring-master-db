@@ -17,7 +17,7 @@ import java.io.Serializable;
 @JsonIgnoreProperties({"ignoreUnknown = true"})
 public class ModelName implements Serializable {            //модель
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private String modelName;
