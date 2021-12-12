@@ -4,6 +4,6 @@
 CRM система для управления сервисным центром по ремонту электроники.
 Серверная часть.
 ---
-ЯП - JAVA
-Framework - Spring
-Database - postgresql
+- ЯП - JAVA
+- Framework - Spring
+- Database - postgresql
