@@ -7,3 +7,4 @@ CRM система для управления сервисным центром
 - ЯП - JAVA
 - Framework - Spring
 - Database - postgresql
+- Мигриция - Flyway
