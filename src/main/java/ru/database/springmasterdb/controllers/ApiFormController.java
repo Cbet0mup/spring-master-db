@@ -11,6 +11,8 @@ import ru.database.springmasterdb.services.*;
 import java.util.List;
 
 @RestController
+//@CrossOrigin(origins = "http://xn--80aaabrq9ba6exc.xn--h1ahn.xn--p1acf")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path = "/api/workorder", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ApiFormController {
 
