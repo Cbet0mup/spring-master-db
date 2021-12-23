@@ -33,6 +33,8 @@ public class WorkOrder implements Serializable {
 
     private String customerName;
     private String customerPhone;
+    private String engineerName;        //мастер
+    private String receiverName;        //приёмщик
 
     private String serialNumber;
     private String imei;
@@ -77,13 +79,13 @@ public class WorkOrder implements Serializable {
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;          //марка: производитель
 
-    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinColumn(name = "receiver_id")
-    private Receiver receiver;                      //приёмщик
+//    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+//    @JoinColumn(name = "receiver_id")
+//    private Receiver receiver;                      //приёмщик
 
-    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinColumn(name = "engineer_id")
-    private Engineer engineer;                                   //мастер
+//    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+//    @JoinColumn(name = "engineer_id")
+//    private Engineer engineer;                                   //мастер
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "status_id")

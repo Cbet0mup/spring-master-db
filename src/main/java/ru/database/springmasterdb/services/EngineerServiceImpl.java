@@ -3,7 +3,6 @@ package ru.database.springmasterdb.services;
 import org.springframework.stereotype.Service;
 import ru.database.springmasterdb.dto.EngineerDTO;
 import ru.database.springmasterdb.factories.EngineerDTOFactory;
-import ru.database.springmasterdb.store.Engineer;
 import ru.database.springmasterdb.store.EngineerRepo;
 
 import java.util.ArrayList;

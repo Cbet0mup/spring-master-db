@@ -18,10 +18,8 @@ import java.util.List;
 public class WorkOrderServiceImpl implements WorkOrderService {
 
     private final WorkOrderRepo workOrderRepo;
-    private final EngineerRepo engineerRepo;
     private final ManufacturerRepo manufacturerRepo;
     private final ProductRepo productRepo;
-    private final ReceiverRepo receiverRepo;
     private final ServiceOrderRepo serviceOrderRepo;
     private final StatusRepo statusRepo;
     private final ModelRepo modelRepo;
@@ -29,17 +27,17 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     private final WorkOrderFactory workOrderFactory;
     private final WorkOrdersUpdateFactory workOrdersUpdateFactory;
     private final PriceRepo priceRepo;
+    private final StaffingRepo staffingRepo;
 
 
     @Autowired
-    public WorkOrderServiceImpl(WorkOrderRepo workOrderRepo, EngineerRepo engineerRepo, ManufacturerRepo manufacturerRepo,
-                                ProductRepo productRepo, ReceiverRepo receiverRepo, ServiceOrderRepo serviceOrderRepo, PriceRepo priceRepo,
-                                StatusRepo statusRepo, WorkOrderDTOFactory workOrderDTOFactory, WorkOrderFactory workOrderFactory, ModelRepo modelRepo, WorkOrdersUpdateFactory workOrdersUpdateFactory) {
+    public WorkOrderServiceImpl(WorkOrderRepo workOrderRepo, ManufacturerRepo manufacturerRepo,
+                                ProductRepo productRepo,  ServiceOrderRepo serviceOrderRepo, PriceRepo priceRepo,
+                                StatusRepo statusRepo, WorkOrderDTOFactory workOrderDTOFactory, WorkOrderFactory workOrderFactory, ModelRepo modelRepo, WorkOrdersUpdateFactory workOrdersUpdateFactory, StaffingRepo staffingRepo) {
         this.workOrderRepo = workOrderRepo;
-        this.engineerRepo = engineerRepo;
+        this.staffingRepo = staffingRepo;
         this.manufacturerRepo = manufacturerRepo;
         this.productRepo = productRepo;
-        this.receiverRepo = receiverRepo;
         this.serviceOrderRepo = serviceOrderRepo;
         this.statusRepo = statusRepo;
         this.workOrderDTOFactory = workOrderDTOFactory;
@@ -52,17 +50,13 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     @Override
     public void createWorkOrder(WorkOrderDTO workOrderDTO) {
         try {
-            Engineer engineer = engineerRepo
-                    .getById(workOrderDTO.getEngineerId());
-
+            String engineerName = staffingRepo.getById(workOrderDTO.getEngineerId()).getName();
+            String receiverName = staffingRepo.getById(workOrderDTO.getReceiverId()).getName();
             Manufacturer manufacturer = manufacturerRepo
                     .getById(workOrderDTO.getManufacturerId());
 
             Product product = productRepo
                     .getById(workOrderDTO.getProductId());
-
-            Receiver receiver = receiverRepo
-                    .getById(workOrderDTO.getReceiverId());
 
             ServiceOrder serviceOrder = serviceOrderRepo
                     .getById(workOrderDTO.getServiceId());
@@ -76,8 +70,8 @@ public class WorkOrderServiceImpl implements WorkOrderService {
                     .getById(workOrderDTO.getPriceId());
 
             //Собираем наш заказ/наряд из всего полученного выше
-            WorkOrder workOrder = workOrderFactory.createWorkOrder(workOrderDTO, engineer, manufacturer,
-                    product, receiver, serviceOrder, status, modelName, price);
+            WorkOrder workOrder = workOrderFactory.createWorkOrder(workOrderDTO, engineerName, receiverName, manufacturer,
+                    product, serviceOrder, status, modelName, price);
 
             workOrderRepo.saveAndFlush(workOrder);
 

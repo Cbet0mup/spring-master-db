@@ -1,5 +1,8 @@
 package ru.database.springmasterdb.role;
 
 public enum StaffRole {
-    ENGINEER, RECEIVER, MANAGER, CLEANER
+    ENGINEER, RECEIVER, MANAGER, CLEANER;
+
+    StaffRole() {
+    }
 }

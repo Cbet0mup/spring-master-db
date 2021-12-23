@@ -9,8 +9,8 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 public class WorkOrderFactory {
-    public WorkOrder createWorkOrder(WorkOrderDTO workOrderDTO, Engineer engineer, Manufacturer manufacturer,
-                                     Product product, Receiver receiver, ServiceOrder serviceOrder, Status status, ModelName modelName,
+    public WorkOrder createWorkOrder(WorkOrderDTO workOrderDTO, String engineerName, String receiverName, Manufacturer manufacturer,
+                                     Product product, ServiceOrder serviceOrder, Status status, ModelName modelName,
                                      Price price){
 LocalDate localDate = LocalDate.now();
         return WorkOrder.builder()
@@ -26,10 +26,10 @@ LocalDate localDate = LocalDate.now();
 
                 .imei(workOrderDTO.getImei())
                 .serialNumber(workOrderDTO.getSerialNumber())
-                .engineer(engineer)
+                .engineerName(engineerName)
                 .manufacturer(manufacturer)
                 .product(product)
-                .receiver(receiver)
+                .receiverName(receiverName)
                 .service(serviceOrder)
                 .status(status)
                 .model(modelName)

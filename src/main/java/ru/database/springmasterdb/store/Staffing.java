@@ -14,15 +14,17 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"ignoreUnknown = true"})
+@Table(name = "staffing")
 public class Staffing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    private String engineerName;
+    private String name;
     private String phoneNumber;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private StaffRole staffRole;
 }

@@ -1,9 +1,11 @@
-create sequence hibernate_sequence start 1 increment 1;
+create sequence hibernate_sequence START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 
-create table engineer
+create table staffing
 (
     id int4 not null,
-    engineer_name varchar(255),
+    name varchar(255),
+    phone_number varchar (64),
+    staff_role varchar (32),
     primary key (id)
 );
 create table hibernate_sequences
@@ -37,12 +39,6 @@ create table product
 (
     id           int4 not null,
     product_name varchar(255),
-    primary key (id)
-);
-create table receiver
-(
-    id            int4 not null,
-    receiver_name varchar(255),
     primary key (id)
 );
 create table service_order
@@ -82,18 +78,17 @@ create table work_order
     trouble                    varchar(512),
     trouble_detected           varchar(1024),
     trouble_solving            varchar(1024),
-    engineer_id                int4,
+    engineer_name              varchar (64),
+    receiver_name              varchar (64),
     manufacturer_id            int4,
     model_id                   int4,
     price                      int4,
     product_id                 int4,
-    receiver_id                int4,
     service_id                 int4,
     status_id                  int4,
     primary key (id)
 );
-alter table work_order
-    add constraint wo_engineer_fk foreign key (engineer_id) references engineer;
+
 alter table work_order
     add constraint wo_manufacturer_fk foreign key (manufacturer_id) references manufacturer;
 alter table work_order
@@ -102,8 +97,6 @@ alter table work_order
     add constraint wo_price_fk foreign key (price) references price;
 alter table work_order
     add constraint wo_product_fk foreign key (product_id) references product;
-alter table work_order
-    add constraint wo_receiver_fk foreign key (receiver_id) references receiver;
 alter table work_order
     add constraint wo_service_order_fk foreign key (service_id) references service_order;
 alter table work_order
