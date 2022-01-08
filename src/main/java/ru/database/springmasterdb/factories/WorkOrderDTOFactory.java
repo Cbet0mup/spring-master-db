@@ -14,10 +14,10 @@ public class WorkOrderDTOFactory {
                 .dateOfIssue(workOrder.getDateOfIssue())
                 .customerName(workOrder.getCustomerName())
                 .customerPhone(workOrder.getCustomerPhone())
-                .engineerName(workOrder.getEngineer().getEngineerName())
+                .engineerName(workOrder.getEngineerName())
                 .manufacturerName(workOrder.getManufacturer().getManufacturerName())
                 .productName(workOrder.getProduct().getProductName())
-                .receiverName(workOrder.getReceiver().getReceiverName())
+                .receiverName(workOrder.getReceiverName())
                 .price(workOrder.getPrice().getPrice())
                 .priceName(workOrder.getPrice().getPriceName())
                 .finalPrice(workOrder.getFinalPrice())
@@ -44,8 +44,6 @@ public class WorkOrderDTOFactory {
                 .serviceId(workOrder.getService().getId())
                 .productId(workOrder.getProduct().getId())
                 .manufacturerId(workOrder.getManufacturer().getId())
-                .receiverId(workOrder.getReceiver().getId())
-                .engineerId(workOrder.getEngineer().getId())
                 .statusId(workOrder.getStatus().getId())
                 .build();
 

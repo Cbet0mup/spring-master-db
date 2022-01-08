@@ -21,11 +21,10 @@ public class WorkOrdersUpdateFactory {
         this.workOrderRepo = workOrderRepo;
     }
 
-    public WorkOrder updateWorkOrder(WorkOrderDTO workOrderDTO, Engineer engineer, Manufacturer manufacturer,
-                                     Product product, Receiver receiver, ServiceOrder serviceOrder, Status status, ModelName modelName,
+    public WorkOrder updateWorkOrder(WorkOrderDTO workOrderDTO, Manufacturer manufacturer,
+                                     Product product, ServiceOrder serviceOrder, Status status, ModelName modelName,
                                      Price price){
         WorkOrder workOrder = workOrderRepo.getById(workOrderDTO.getId());
-
 
         return workOrder
                 .setCustomerName(workOrderDTO.getCustomerName())
@@ -46,10 +45,9 @@ public class WorkOrdersUpdateFactory {
                 .setIsGivenOut(workOrderDTO.getIsGivenOut())
                 .setIsAccepted(workOrderDTO.getIsAccepted())
                 .setIsWaitingForASpareParts(workOrderDTO.getIsWaitingForASpareParts())
-                .setEngineer(engineer)
+                .setEngineerName(workOrderDTO.getEngineerName())
                 .setManufacturer(manufacturer)
                 .setProduct(product)
-                .setReceiver(receiver)
                 .setService(serviceOrder)
                 .setStatus(status)
                 .setModel(modelName)

@@ -33,7 +33,9 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     @Autowired
     public WorkOrderServiceImpl(WorkOrderRepo workOrderRepo, ManufacturerRepo manufacturerRepo,
                                 ProductRepo productRepo,  ServiceOrderRepo serviceOrderRepo, PriceRepo priceRepo,
-                                StatusRepo statusRepo, WorkOrderDTOFactory workOrderDTOFactory, WorkOrderFactory workOrderFactory, ModelRepo modelRepo, WorkOrdersUpdateFactory workOrdersUpdateFactory, StaffingRepo staffingRepo) {
+                                StatusRepo statusRepo, WorkOrderDTOFactory workOrderDTOFactory,
+                                WorkOrderFactory workOrderFactory, ModelRepo modelRepo,
+                                WorkOrdersUpdateFactory workOrdersUpdateFactory, StaffingRepo staffingRepo) {
         this.workOrderRepo = workOrderRepo;
         this.staffingRepo = staffingRepo;
         this.manufacturerRepo = manufacturerRepo;
@@ -50,8 +52,6 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     @Override
     public void createWorkOrder(WorkOrderDTO workOrderDTO) {
         try {
-            String engineerName = staffingRepo.getById(workOrderDTO.getEngineerId()).getName();
-            String receiverName = staffingRepo.getById(workOrderDTO.getReceiverId()).getName();
             Manufacturer manufacturer = manufacturerRepo
                     .getById(workOrderDTO.getManufacturerId());
 
@@ -70,7 +70,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
                     .getById(workOrderDTO.getPriceId());
 
             //Собираем наш заказ/наряд из всего полученного выше
-            WorkOrder workOrder = workOrderFactory.createWorkOrder(workOrderDTO, engineerName, receiverName, manufacturer,
+            WorkOrder workOrder = workOrderFactory.createWorkOrder(workOrderDTO, manufacturer,
                     product, serviceOrder, status, modelName, price);
 
             workOrderRepo.saveAndFlush(workOrder);
@@ -86,17 +86,11 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         try {
 
 
-            Engineer engineer = engineerRepo
-                    .getById(workOrderDTO.getEngineerId());
-
             Manufacturer manufacturer = manufacturerRepo
                     .getById(workOrderDTO.getManufacturerId());
 
             Product product = productRepo
                     .getById(workOrderDTO.getProductId());
-
-            Receiver receiver = receiverRepo
-                    .getById(workOrderDTO.getReceiverId());
 
             ServiceOrder serviceOrder = serviceOrderRepo
                     .getById(workOrderDTO.getServiceId());
@@ -109,8 +103,8 @@ public class WorkOrderServiceImpl implements WorkOrderService {
             Price price = priceRepo
                     .getById(workOrderDTO.getPriceId());
 
-            WorkOrder workOrder = workOrdersUpdateFactory.updateWorkOrder(workOrderDTO, engineer, manufacturer,
-                    product, receiver, serviceOrder, status, modelName, price);
+            WorkOrder workOrder = workOrdersUpdateFactory.updateWorkOrder(workOrderDTO, manufacturer,
+                    product, serviceOrder, status, modelName, price);
 
             workOrderRepo.saveAndFlush(workOrder);
 

@@ -6,7 +6,6 @@ import lombok.experimental.Accessors;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Accessors(chain = true)
 public class WorkOrderDTO {
@@ -46,8 +45,8 @@ public class WorkOrderDTO {
     private Integer serviceId;     //платный, гарантийный
     private Integer productId;             //тип: телек, стиралка краткий
     private Integer manufacturerId;        //марка: производитель
-    private Integer receiverId;        //приёмщик
-    private Integer engineerId;        //мастер
+    private String receiverName;        //приёмщик
+    private String engineerName;        //мастер
     private Integer statusId;          //принят, выдан, на звонке
     //30
 

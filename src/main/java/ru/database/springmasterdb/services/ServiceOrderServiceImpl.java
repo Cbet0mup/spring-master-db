@@ -12,8 +12,8 @@ import java.util.List;
 @Service
 public class ServiceOrderServiceImpl implements ServiceOrderService{
 
-    ServiceOrderRepo serviceOrderRepo;
-    ServiceOrderDTOFactory serviceOrderDTOFactory;
+    private final ServiceOrderRepo serviceOrderRepo;
+    private final ServiceOrderDTOFactory serviceOrderDTOFactory;
 
     public ServiceOrderServiceImpl(ServiceOrderRepo serviceOrderRepo, ServiceOrderDTOFactory serviceOrderDTOFactory) {
         this.serviceOrderRepo = serviceOrderRepo;

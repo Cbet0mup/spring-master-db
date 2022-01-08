@@ -20,14 +20,11 @@ import java.util.List;
 @RequestMapping(path = "/api/managment", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ManagementController {
 
-    private final EngineerServiceImpl engineerService;
-    private final ReceiverServiceImpl receiverService;
 
-    public ManagementController(EngineerServiceImpl engineerService, ReceiverServiceImpl receiverService) {
-        this.engineerService = engineerService;
-        this.receiverService = receiverService;
+    public ManagementController() {
+
     }
-    @GetMapping("/findworkorder/all")  // найти все выданные за период
+    @GetMapping("/findworkorder/all")  //
     public ResponseEntity<List<WorkOrderDtoPresent>> getAllWorkOrders() {
         List<WorkOrderDtoPresent> workOrderDTOpr = null;// workOrderServiceImpl.findAllWorkOrders();
         return new ResponseEntity<>(workOrderDTOpr, HttpStatus.OK);

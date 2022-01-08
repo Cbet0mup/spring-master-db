@@ -4,5 +4,5 @@ insert into price (price_name, price, product_id, id) values ('test_price_name',
 insert into product (product_name, id) values ('test_product_name', '1');
 insert into service_order (service_type, id) values ('test_service_type_name', '1');
 insert into status (status_name, id) values ('test_status_type_name', '1');
-insert into staffing (name, phone_number, staff_role, id) values ('test_engineer_type_name', '345345345', 'ENGINEER', '1');
-insert into staffing (name, phone_number, staff_role, id) values ('test_receiver_type_name', '45756756757', 'RECEIVER', '2');
+insert into staffing (name, phone_number, staff_role, id) values ('test_engineer_name', '345345345', 'ENGINEER', '1');
+insert into staffing (name, phone_number, staff_role, id) values ('test_receiver_name', '45756756757', 'RECEIVER', '2');

@@ -1,4 +1,4 @@
-create sequence hibernate_sequence START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+create sequence hibernate_sequence START WITH 1 INCREMENT BY 1;
 
 create table staffing
 (
