@@ -104,16 +104,16 @@ public class ApiFormController {
 
     //Engineer
 
-    @GetMapping("/apiform/staff/{role}")
-    public ResponseEntity<List<StaffDTO>> getAllEngineers(@PathVariable("role") String role) {
-        List<StaffDTO> staffDTOList = staffService.findAll();
-        return new ResponseEntity<>(staffDTOList, HttpStatus.OK);
-    }
-
-    @PostMapping("/apiform/engineer")
-    public ResponseEntity<EngineerDTO> createWorkOrder(@RequestBody EngineerDTO engineerDTO) {
-        engineerService.createNewEngineer(engineerDTO);
-        return new ResponseEntity<>(engineerDTO, HttpStatus.CREATED);
-    }
+//    @GetMapping("/apiform/staff/{role}")
+//    public ResponseEntity<List<StaffDTO>> getAllEngineers(@PathVariable("role") String role) {
+//        List<StaffDTO> staffDTOList = staffService.findAll();
+//        return new ResponseEntity<>(staffDTOList, HttpStatus.OK);
+//    }
+//
+//    @PostMapping("/apiform/engineer")
+//    public ResponseEntity<EngineerDTO> createWorkOrder(@RequestBody EngineerDTO engineerDTO) {
+//        engineerService.createNewEngineer(engineerDTO);
+//        return new ResponseEntity<>(engineerDTO, HttpStatus.CREATED);
+//    }
 
 }

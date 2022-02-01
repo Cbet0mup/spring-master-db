@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.database.springmasterdb.dto.WorkOrderDtoPresent;
-import ru.database.springmasterdb.services.EngineerServiceImpl;
-import ru.database.springmasterdb.services.ReceiverServiceImpl;
 
 import java.util.List;
 

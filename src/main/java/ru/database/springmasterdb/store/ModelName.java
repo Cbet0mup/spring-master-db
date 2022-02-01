@@ -1,11 +1,18 @@
+
+
 package ru.database.springmasterdb.store;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.security.SecureRandom;
+import java.util.Arrays;
 
 @Entity
 @Builder
@@ -23,5 +30,4 @@ public class ModelName implements Serializable {            //модель
     private String modelName;
 
     private Integer manufacturerId;
-
 }
