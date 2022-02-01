@@ -19,9 +19,6 @@ import java.util.List;
 @RequestMapping(path = "/api/workorder", produces = MediaType.APPLICATION_JSON_VALUE)
 public class WorkOrderController {
 
-    //private final Logger log = LoggerFactory.getLogger(getClass());
-
-
     private final WorkOrderServiceImpl workOrderServiceImpl;
 
 
